@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Assignments</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1>Assignments</h1>
+    <div>
+        <div>
+            <fieldset>
+                <legend>Add a new assignment</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <label for="courseSelection">Course</label>
+                        </td>
+                        <td>
+                            <select id="courseSelection">
+                                <option value="" default>Please Select</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="assignmentName">Name:</label>
+                        </td>
+                        <td>
+                            <input id="assignmentName" type="text" maxlength="30">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="selectFile">Select File</button>
+                        </td>
+                        <td>
+                            <label id="fileName"></label>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <p>
+                <button id="uploadFileButton">Upload</button>
+            </p>
+        </div>
+    </div>
+    <div id="assignmentList"></div>
+</body>
+</html>

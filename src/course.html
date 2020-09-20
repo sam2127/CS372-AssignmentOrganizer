@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1>Courses</h1>
+    <fieldset>
+        <legend>Add new</legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="semesterSelection">Semester</label>
+                </td>
+                <td>
+                    <select id="semesterSelection">
+                        <option value="" default>Please Select</option>
+                        <option value="Summer 2020" default>Summer 2020</option>
+                        <option value="Winter 2020" default>Winter 2020</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="courseCode">Course Code</label>
+                </td>
+                <td>
+                    <input id="courseCode" type="text" maxlength="8" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="courseName">Course Name</label>
+                </td>
+                <td>
+                    <input id="courseName" type="text" maxlength="50" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="addCourseButton">Add</button>
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <div id="allCoursesList">
+        <table>
+            <tr>
+                <td>
+                    CS-115 - C++ Programming
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CS-215 - Web Programming
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

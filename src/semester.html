@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Semester</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1>Semesters</h1>
+    <fieldset>
+        <legend>Add new</legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="seasonSelection">Season</label>
+                </td>
+                <td>
+                    <select id="seasonSelection">
+                        <option value="">Please Select</option>
+                        <option value="Winter">Winter</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Fall">Fall</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="year">Year</label>
+                </td>
+                <td>
+                    <input id="year" type="text" maxlength="4" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="addSemesterButton">Add</button>
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <div id="allSemestersList">
+        <table>
+            <tr>
+                <td>
+                    Winter 2020
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Spring 2020
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Summer 2020
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Winter 2019
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+</html>
