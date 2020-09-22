@@ -1,6 +1,16 @@
 #grad1 {
     background-image: linear-gradient(to bottom right, rgb(178, 197, 204), rgba(54, 85, 168, 0.89), rgb(178, 197, 204));
     margin: auto;
-    max-width: 38rem;
+    max-width: 780px;
     padding: 2rem;
+}
+
+.thumbnail:hover {
+    background-image: linear-gradient(to bottom right, rgb(178, 197, 204), rgba(54, 85, 168, 0.89), rgb(178, 197, 204));
+    opacity: 0.5;
+}
+
+.list-group-item:hover {
+    background-image: linear-gradient(to bottom right, rgb(178, 197, 204), rgba(54, 85, 168, 0.89), rgb(178, 197, 204));
+    opacity: 0.9;
 }
