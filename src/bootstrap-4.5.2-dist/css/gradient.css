@@ -1,3 +1,6 @@
 #grad1 {
     background-image: linear-gradient(to bottom right, rgb(178, 197, 204), rgba(54, 85, 168, 0.89), rgb(178, 197, 204));
+    margin: auto;
+    max-width: 38rem;
+    padding: 2rem;
 }
