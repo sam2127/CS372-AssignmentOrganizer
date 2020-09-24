@@ -2,69 +2,74 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Courses</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Semesters</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/gradient.css">
+    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap.min.css">
+    <script src="./bootstrap-4.5.2-dist/js/bootstrap.bundle.js"></script>
+    <script src="./bootstrap-4.5.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./bootstrap-4.5.2-dist/js/bootstrap.js"></script>
+    <script src="./bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <body>
-    <h1>Courses</h1>
-    <fieldset>
-        <legend>Add new</legend>
-        <table>
-            <tr>
-                <td>
-                    <label for="semesterSelection">Semester</label>
-                </td>
-                <td>
-                    <select id="semesterSelection">
-                        <option value="" default>Please Select</option>
-                        <option value="Summer 2020" default>Summer 2020</option>
-                        <option value="Winter 2020" default>Winter 2020</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="courseCode">Course Code</label>
-                </td>
-                <td>
-                    <input id="courseCode" type="text" maxlength="8" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="courseName">Course Name</label>
-                </td>
-                <td>
-                    <input id="courseName" type="text" maxlength="50" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button id="addCourseButton">Add</button>
-                </td>
-                <td>
-                    &nbsp;
-                </td>
-            </tr>
-        </table>
-    </fieldset>
 
-    <div id="allCoursesList">
-        <table>
-            <tr>
-                <td>
-                    CS-115 - C++ Programming
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    CS-215 - Web Programming
-                </td>
-            </tr>
-        </table>
+
+    <div class="container pb-2" id="grad1">
+        <h1 class="text-center">Courses</h1>
+
+        <form class="mb-0" id="courseForm">
+            <div class="row form-group justify-content-center pb-0">
+                <select name="semesters" class="form-control-sm inputBox-width" id="seasonSelection">
+                    <option selected>Select Semester</option>
+                     <option value="Winter">Winter</option>
+                    <option value="spring/summer">Spring/Summer</option>
+                    <option value="Fall">Fall</option>
+                </select>
+                <input type="text" class="form-control-sm inputBox-width" value="year (e.g.2020)" id="year" />
+            </div>
+            <div class="row form-group justify-content-center">
+                <input type="text" class="form-control-sm inputBox-width" value="course (e.g. math)" id="course" />
+                <input class="form-control-sm inputBox-width" type="text" value="course code(e.g. 100)" id="courseCode" />
+            </div>
+            <div class="row form-group justify-content-center">
+                <button type="submit" class="btn btn-primary btn-sm inputBox-width " id="addCourseButton">Add Course</button>
+            </div>
+        </form>
+
+        <div class="container">
+            <h3 class="text-center">List of courses</h3>
+            <ul class="list-group list-group-flush overflow-auto" style="height:360px;" id="allCoursesList">
+                <li class="list-group-item">First item</li>
+                <li class="list-group-item">Second item</li>
+                <li class="list-group-item">Third item</li>
+                <li class="list-group-item">Fourth item</li>
+                <li class="list-group-item">Second item</li>
+                <li class="list-group-item">Third item</li>
+                <li class="list-group-item">Fourth item</li>
+                <li class="list-group-item">Fourth item</li>
+                <li class="list-group-item">Second item</li>
+                <li class="list-group-item">Third item</li>
+                <li class="list-group-item">Fourth item</li>
+                <li class="list-group-item">Fourth item</li>
+                <li class="list-group-item">Second item</li>
+                <li class="list-group-item">Third item</li>
+                <li class="list-group-item">Fourth item</li>
+                <li class="list-group-item">Fourth item</li>
+                <li class="list-group-item">Second item</li>
+                <li class="list-group-item">Third item</li>
+                <li class="list-group-item">Fourth item</li>
+            </ul>
+        </div>
     </div>
+
 </body>
 
 </html>
