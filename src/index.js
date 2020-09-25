@@ -1,27 +1,28 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const fs = require("fs");
+var mainWindow;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
-  // eslint-disable-line global-require
-  app.quit();
+    // eslint-disable-line global-require
+    app.quit();
 }
 
 const createWindow = () => {
-  // Create the browser window.
-  let mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    frame: true,
-    webPreferences: {
-      nodeIntegration: true,
-      enableRemoteModule: true,
-    },
-  });
+    // Create the browser window.
+    mainWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
+        frame: true,
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true,
+        },
+    });
 
-  // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, "home.html"));
+    // and load the index.html of the app.
+    mainWindow.loadFile(path.join(__dirname, "home.html"));
 };
 
 // This method will be called when Electron has finished
@@ -33,72 +34,38 @@ app.on("ready", createWindow);
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
+    if (process.platform !== "darwin") {
+        app.quit();
+    }
 });
 
 app.on("activate", () => {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
+    // On OS X it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+    }
 });
 
-ipcMain.on("semester-clicked", () => {
-  let semesterWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    alwaysOnTop: false,
-    frame: true,
-    webPreferences: {
-      nodeIntegration: true,
-      enableRemoteModule: true,
-    },
-  });
 
-  semesterWindow.on("close", () => {
-    semesterWindow = null;
-  });
+//pens the pane in a modal window parent main window
+ipcMain.on("openSecondWindow", (event, args) => {
+    let secondWindow = new BrowserWindow({
+        width: 790,
+        height: 590,
+        alwaysOnTop: false,
+        frame: true,
+        parent: mainWindow,
+        modal: true,
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true,
+        },
+    });
+    secondWindow.loadFile(path.join(__dirname, args));
+    secondWindow.on("close", () => {
+        secondWindow = null;
+    });
 
-  semesterWindow.loadFile(path.join(__dirname, "semester.html"));
-});
 
-ipcMain.on("course-clicked", () => {
-  let courseWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    alwaysOnTop: false,
-    frame: true,
-    webPreferences: {
-      nodeIntegration: true,
-      enableRemoteModule: true,
-    },
-  });
-
-  courseWindow.on("close", () => {
-    courseWindow = null;
-  });
-
-  courseWindow.loadFile(path.join(__dirname, "course.html"));
-});
-
-ipcMain.on("assignment-clicked", () => {
-  let assignmentWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    alwaysOnTop: false,
-    frame: true,
-    webPreferences: {
-      nodeIntegration: true,
-      enableRemoteModule: true,
-    },
-  });
-
-  assignmentWindow.on("close", () => {
-    assignmentWindow = null;
-  });
-
-  assignmentWindow.loadFile(path.join(__dirname, "assignment.html"));
 });

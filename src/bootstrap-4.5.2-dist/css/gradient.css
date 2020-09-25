@@ -1,7 +1,6 @@
     #grad1 {
         background-image: linear-gradient(to bottom right, rgb(178, 197, 204), rgba(54, 85, 168, 0.89), rgb(178, 197, 204));
         margin: auto;
-        max-width: 780px;
         padding: 2rem;
     }
     
@@ -17,4 +16,12 @@
     
     .inputBox-width {
         width: 200px;
+    }
+    
+    .height-full {
+        height: 100vh;
+    }
+    
+    .listSize {
+        height: 360px;
     }
