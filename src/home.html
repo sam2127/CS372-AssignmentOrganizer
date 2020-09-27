@@ -3,69 +3,48 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <link rel="stylesheet" href="styles.css">
     <title>Assignment Organizer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/gradient.css">
-    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap-reboot.css">
-    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="./bootstrap-4.5.2-dist/css/bootstrap.min.css">
-    <script src="./bootstrap-4.5.2-dist/js/bootstrap.bundle.js"></script>
-    <script src="./bootstrap-4.5.2-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./bootstrap-4.5.2-dist/js/bootstrap.js"></script>
-    <script src="./bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
+    <h1>Assignment Organizer</h1>
+    <p>Organize your assignments using single App.</p>
+    <table>
+        <tr>
+            <td>
+                <fieldset>
+                    <image id="semesterIcon" src="./assets/Semester.png"></image>
+                    <p>Semester</p>
+                </fieldset>
 
-    <div class="container pt-5" style="height:540px" id="grad1">
-        <h2 class="text-center ">Assignment Organizer</h2>
-        <div class=" row w-75 pt-5 ml-2">
-            <div class="col-3 shadow-sm " id="semesterIcon">
-                <div class="thumbnail ">
-                    <img src="./assets/Semester.png" alt="Semester" style="width:100% ">
-                    <div class="text-center caption ">
-                        <p><strong>Semeter</strong></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3 shadow-sm" id="courseIcon">
-                <div class="thumbnail ">
-                    <img src="./assets/Course.png" alt="Courses" style="width:100% ">
-                    <div class="text-center caption ">
-                        <p><strong>Courses</strong></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3 shadow-sm" id="assignmentIcon">
-                <div class="thumbnail ">
-                    <img src="./assets/Assignment.png" alt="Assighment" style="width:100% ">
-                    <div class="text-center caption ">
-                        <p><strong>Assignment</strong></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3 shadow-sm" id="settingsIcon">
-                <div class="thumbnail ">
-                    <img src="./assets/Settings.png" alt="Settings" style="width:100% ">
-                    <div class="text-center caption ">
-                        <p><strong>settings</strong></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            </td>
+            <td>
+                <fieldset>
+                    <image id="courseIcon" src="./assets/Course.png"></image>
+                    <p>Course</p>
+                </fieldset>
 
+            </td>
+            <td>
+                <fieldset>
+                    <image id="assignmentIcon" src="./assets/Assignment.png"></image>
+                    <p>Assignment</p>
+                </fieldset>
 
+            </td>
+            <td>
+                <fieldset>
+                    <image id="settingsIcon" src="./assets/Settings.png"></image>
+                    <p>Settings</p>
+                </fieldset>
 
-
-    <script>
-        require('./home.js');
-    </script>
+            </td>
+        </tr>
+    </table>
 </body>
+<script>
+    require('./home.js');
+</script>
 
 </html>
