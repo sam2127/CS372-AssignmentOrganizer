@@ -4,47 +4,148 @@
 <head>
     <meta charset="UTF-8">
     <title>Assignment Organizer</title>
-    <link rel="stylesheet" href="index.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
+    <!-- Import font awesome icons -->
+    <link href="../node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
 </head>
 
-<body>
-    <h1>Assignment Organizer</h1>
-    <p>Organize your assignments using single App.</p>
-    <table>
-        <tr>
-            <td>
-                <fieldset>
-                    <image id="semesterIcon" src="./assets/Semester.png"></image>
-                    <p>Semester</p>
-                </fieldset>
+<body class="light-green lighten-4">
+    <div class="container center">
+        <h4>Assignment Organizer</h4>
+        <h6>Organize your assignments using single App.</h6>
+        <div class="row">
+            <div class="col s3">
+                <div class="grey lighten-1 horizontal card valign-wrapper">
+                    <div class="card-image">
+                        &nbsp;
+                        <i class="fas fa-calendar-plus fa-3x"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Step 1</div>
+                        <h6>Add Semester</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col s3">
+                <div class="grey lighten-1 horizontal card valign-wrapper">
+                    <div class="card-image">
+                        &nbsp;
+                        <i class="fas fa-chalkboard-teacher fa-3x"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Step 2</div>
+                        <h6>Add Course</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col s3">
+                <div class="grey lighten-1 horizontal card valign-wrapper">
+                    <div class="card-image">
+                        &nbsp;
+                        <i class="fas fa-upload fa-3x"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Step 3</div>
+                        <h6>Add Assignment</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col s3">
+                <div class="grey lighten-1 horizontal card valign-wrapper">
+                    <div class="card-image">
+                        &nbsp;
+                        <i class="fas fa-thumbs-up fa-3x"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Done!</div>
+                        <h6>You've back-up.</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s3">
+                <i class="far fa-hand-point-down fa-3x"></i>
+            </div>
+            <div class="col s3">
+                <i class="far fa-hand-point-down fa-3x"></i>
+            </div>
+            <div class="col s3">
+                <i class="far fa-hand-point-down fa-3x"></i>
+            </div>
+            <div class="col s3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col xl3">
+                <div class="teal lighten-1 card hoverable" id="semestersCard">
+                    <div class="card-image">
+                        <image id="semesterIcon" src="./assets/icons/Semester.png"></image>
+                    </div>
+                    <div class="card-action">
+                        <span class="flow-text white-text" id="semestersCount">
+                            0
+                        </span>
+                        <a tabindex="1" class="white-text" href="./semester.html">Semesters</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col xl3">
+                <div class="orange lighten-2 card hoverable" id="coursesCard">
+                    <div class="card-image">
+                        <image id="courseIcon" src="./assets/icons/Course.png"></image>
+                    </div>
+                    <div class="card-action">
+                        <span class="flow-text white-text" id="coursesCount">
+                            0
+                        </span>
+                        <a tabindex="2" class="white-text" href="./course.html">Courses</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col xl3">
+                <div class="blue lighten-1 card hoverable" id="assignmentsCard">
+                    <div class="card-image">
+                        <image id="assignmentIcon" src="./assets/icons/Assignment.png"></image>
+                    </div>
+                    <div class="card-action">
+                        <span class="flow-text white-text" id="assignmentsCount">
+                            0
+                        </span>
+                        <a tabindex="3" class="white-text" href="./assignment.html">Assignments</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col xl3">
+                <div class="purple lighten-1 card hoverable" id="settingsCard">
+                    <div class="card-image">
+                        <image id="settingsIcon" src="./assets/icons/Settings.png"></image>
+                    </div>
+                    <div class="card-action">
+                        <span class="flow-text">
+                            <!-- This span is a placeholder to adjust card size. -->
+                        </span>
+                        <a tabindex="4" class="white-text" href="./setting.html">Back-up Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            </td>
-            <td>
-                <fieldset>
-                    <image id="courseIcon" src="./assets/Course.png"></image>
-                    <p>Course</p>
-                </fieldset>
 
-            </td>
-            <td>
-                <fieldset>
-                    <image id="assignmentIcon" src="./assets/Assignment.png"></image>
-                    <p>Assignment</p>
-                </fieldset>
-
-            </td>
-            <td>
-                <fieldset>
-                    <image id="settingsIcon" src="./assets/Settings.png"></image>
-                    <p>Settings</p>
-                </fieldset>
-
-            </td>
-        </tr>
-    </table>
+        <div class="row section">
+            <div class="col xl12">
+                <span>Cross-platform: Runs on &nbsp;</span>
+                <i class="fab fa-apple fa-3x"></i>
+                <i class="fab fa-windows fa-3x"></i>
+                <i class="fab fa-linux fa-3x"></i>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/materialize.min.js"></script>
+    <script src="./home.js"></script>
 </body>
-<script>
-    require('./home.js');
-</script>
 
 </html>

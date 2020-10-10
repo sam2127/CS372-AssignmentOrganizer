@@ -43,6 +43,7 @@
     }
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {

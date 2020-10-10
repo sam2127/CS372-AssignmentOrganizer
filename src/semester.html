@@ -3,54 +3,69 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Semester</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Semesters</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
+    <!-- Import font awesome icons -->
+    <link href="../node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Semesters</h1>
-    <fieldset>
-        <legend>Add new</legend>
-        <table>
-            <tr>
-                <td>
-                    <label for="seasonSelection">Season</label>
-                </td>
-                <td>
-                    <select id="seasonSelection">
-                        <option value="">Please Select</option>
-                        <option value="Winter">Winter</option>
-                        <option value="Spring">Spring</option>
-                        <option value="Summer">Summer</option>
-                        <option value="Fall">Fall</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="year">Year</label>
-                </td>
-                <td>
-                    <input id="year" type="text" maxlength="4" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button id="addSemesterButton">Add</button>
-                </td>
-                <td>
-                    &nbsp;
-                </td>
-            </tr>
-        </table>
-    </fieldset>
-
-    <div id="allSemestersList">
-
+    <div class="container center">
+        <h3>Semesters</h3>
+        <h5>Add/Edit semesters.</h5>
+        <nav class="teal">
+            <div class="nav-wrapper left">
+                <div class="col s12">
+                    <a href="./home.html" class="breadcrumb">&nbsp;Home</a>
+                    <a href="#" class="breadcrumb">Semesters</a>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col xl4 offset-xl4">
+                <div class="section center">
+                    <fieldset>
+                        <legend>
+                            <h6>Add Semester</h6>
+                        </legend>
+                        <div class="input-field section">
+                            <select id="seasonSelection">
+                                <option value="" selected>Select</option>
+                                <option value="Winter">Winter</option>
+                                <option value="Spring">Spring</option>
+                                <option value="Summer">Summer</option>
+                                <option value="Fall">Fall</option>
+                            </select>
+                            <label for="seasonSelection">Season</label>
+                        </div>
+                        <div class="input-field section">
+                            <input placeholder="Enter year of study" id="year" type="text" class="validate"
+                                data-length="4">
+                            <label for="year">Year</label>
+                        </div>
+                        <a class="waves-effect waves-light btn" id="addSemesterButton">Add</a>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col xl8 offset-xl2">
+                <fieldset>
+                    <legend>
+                        <h6>Existing Semesters</h6>
+                    </legend>
+                    <div class="section" id="allSemestersList">
+                        <!-- Existing semesters will dynamically be displayed here -->
+                    </div>
+                </fieldset>
+            </div>
+        </div>
     </div>
+    <script src="assets/js/materialize.min.js"></script>
+    <script src="./semester.js"></script>
 </body>
-<script>
-    require('./semester.js');
-</script>
 
 </html>
