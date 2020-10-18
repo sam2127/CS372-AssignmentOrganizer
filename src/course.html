@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
+    <!-- Import font awesome icons -->
+    <link href="../node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container center">
+        <h3>Courses</h3>
+        <h5>Add/Edit courses.</h5>
+        <nav class="teal">
+            <div class="nav-wrapper left">
+                <div class="col s12">
+                    <a href="./home.html" class="breadcrumb">&nbsp;Home</a>
+                    <a href="#" class="breadcrumb">Courses</a>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col xl6 offset-xl3">
+                <div class="section center">
+                    <fieldset>
+                        <legend>
+                            <h6>Add Course</h6>
+                        </legend>
+                        <!-- TODO: Fix tab order so keyboard navigation through fields is simple. -->
+                        <div class="input-field section">
+                            <select id="semesterSelection"></select>
+                            <label for="semesterSelection">Semester</label>
+                        </div>
+                        <div class="input-field section">
+                            <input placeholder="e.g. MATH-100" id="courseCode" type="text" class="validate"
+                                data-length="10">
+                            <label for="courseCode">Course Code</label>
+                        </div>
+                        <div class="input-field section">
+                            <input placeholder="e.g. Intro to Calculus" id="courseName" type="text" class="validate"
+                                data-length="40">
+                            <label for="courseName">Course Name</label>
+                        </div>
+                        <a class="waves-effect waves-light btn" id="addCourseButton">Add</a>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col xl8 offset-xl2">
+                <fieldset>
+                    <legend>
+                        <h6>Existing Courses</h6>
+                    </legend>
+                    <div class="section" id="allCoursesList">
+                        <!-- Existing courses will dynamically be displayed here -->
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/materialize.min.js"></script>
+    <script src="./course.js"></script>
+</body>
+
+</html>

@@ -41,15 +41,9 @@ function getStatistics() {
 
 function getSemestersCount() {
     try {
-        let yearObjects = JSON.parse(fs.readFileSync(semestersDataFile, "utf-8"));
+        let semesters = JSON.parse(fs.readFileSync(semestersDataFile, "utf-8"));
 
-        let count = 0;
-
-        yearObjects.forEach(year => {
-            count += year.semesters.length;
-        });
-
-        semestersCount.innerHTML = count;
+        semestersCount.innerHTML = semesters.length;
     } catch (error) {
         dialog.showErrorBox('Error!', "An error occurred while fetching semesters count.");
     }

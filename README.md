@@ -5,7 +5,8 @@ This is an [electron](https://www.electronjs.org/) based app that I created as p
 ## Features
 
 - [x] Add Semester
-- [ ] Add Course
+- [x] Edit Semester
+- [x] Add Course
 - [ ] Add Assignment (added assignment is backed-up locally)
 - [ ] Open Assignment
 - [ ] Delete Assignment
