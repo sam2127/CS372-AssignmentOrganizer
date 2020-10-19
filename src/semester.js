@@ -436,9 +436,31 @@ function validateSemeseter(event)
     }
 }
 
+
+function validateUpdatedSemeseter(event)
+{   
+    var year = editYear.value;
+    var season = editSeasonSelection.value;
+    debugger;
+    if(year != null && year != "" && season != null && season !="")
+    {
+        var regYear = /^(199[0-9]|20[0-4][0-9]|2050)$/;
+        if(regYear.test(year) == true) 
+            {document.getElementById("updateSemesterButton").removeAttribute("disabled");}
+        else
+            {document.getElementById("updateSemesterButton").setAttribute("disabled","disabled");}
+    }
+    else
+    {
+        document.getElementById("updateSemesterButton").setAttribute("disabled","disabled");
+    }
+}
+
 // Function call to validate semester input entered/selected by the user 
 yearText.addEventListener("keyup", validateSemeseter);
 seasonSelection.addEventListener("change", validateSemeseter);
+editYear.addEventListener("keyup", validateUpdatedSemeseter);
+editSeasonSelection.addEventListener("change", validateUpdatedSemeseter);
 
 addSemesterButton.addEventListener("click", function (event) {
     addSemester(false, 0);
