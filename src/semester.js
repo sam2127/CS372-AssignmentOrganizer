@@ -416,6 +416,30 @@ function updateSemesterForAssociatedAssignments(semester) {
     }
 }
 
+// This function validates the semester input entered/selected by the user 
+function validateSemeseter(event)
+{   
+    var year = yearText.value;
+    var season = seasonSelection.value;
+    debugger;
+    if(year != null && year != "" && season != null && season !="")
+    {
+        var regYear = /^(199[0-9]|20[0-4][0-9]|2050)$/;
+        if(regYear.test(year) == true) 
+            {document.getElementById("addSemesterButton").removeAttribute("disabled");}
+        else
+            {document.getElementById("addSemesterButton").setAttribute("disabled","disabled");}
+    }
+    else
+    {
+        document.getElementById("addSemesterButton").setAttribute("disabled","disabled");
+    }
+}
+
+// Function call to validate semester input entered/selected by the user 
+yearText.addEventListener("keyup", validateSemeseter);
+seasonSelection.addEventListener("change", validateSemeseter);
+
 addSemesterButton.addEventListener("click", function (event) {
     addSemester(false, 0);
 });
