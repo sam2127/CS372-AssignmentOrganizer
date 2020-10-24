@@ -26,6 +26,7 @@
         </nav>
         <div class="row">
             <div class="col xl4 offset-xl4">
+                <!-- Creating a div for add semester. -->
                 <div class="section center" id="addSemesterDiv">
                     <fieldset>
                         <legend>
@@ -33,22 +34,23 @@
                         </legend>
                         <div class="input-field section">
                             <select tabindex="1" id="seasonSelection">
-                                <option value="" selected>Select</option>
+                                <option value="" selected>Select Term</option>
                                 <option value="Winter">Winter</option>
                                 <option value="Spring">Spring</option>
                                 <option value="Summer">Summer</option>
                                 <option value="Fall">Fall</option>
                             </select>
-                            <label for="seasonSelection">Season</label>
+                            <label for="seasonSelection">Term</label>
                         </div>
                         <div class="input-field section">
                             <input tabindex="2" placeholder="Enter year of study" id="year" type="text" maxlength="4" class="validate"
                                 data-length="4">
                             <label for="year">Year</label>
                         </div>
-                        <a disabled tabindex="3" class="waves-effect waves-light btn" id="addSemesterButton">Add</a>
+                        <a tabindex="3" class="waves-effect waves-light btn" id="addSemesterButton">Add</a>
                     </fieldset>
                 </div>
+                <!-- By default, the div for edit semester will be hidden. -->
                 <div class="section center hide" id="editSemesterDiv">
                     <fieldset>
                         <legend>
@@ -57,20 +59,20 @@
                         <div class="input-field section">
                             <input type="hidden" id="editSemesterId" value="">
                             <select tabindex="4" id="editSeasonSelection">
-                                <option value="" selected>Select</option>
+                                <option value="" selected>Select Term</option>
                                 <option value="Winter">Winter</option>
                                 <option value="Spring">Spring</option>
                                 <option value="Summer">Summer</option>
                                 <option value="Fall">Fall</option>
                             </select>
-                            <label for="editSeasonSelection">Season</label>
+                            <label for="editSeasonSelection">Term</label>
                         </div>
                         <div class="input-field section">
                             <input tabindex="5" placeholder="Enter year of study" id="editYear" type="text" maxlength="4" class="validate"
                                 data-length="4">
-                            <label for="year">Year</label>
+                            <label for="editYear">Year</label>
                         </div>
-                        <a disabled tabindex="6" class="waves-effect waves-light btn" id="updateSemesterButton">Update</a>
+                        <a tabindex="6" class="waves-effect waves-light btn" id="updateSemesterButton">Update</a>
                         <a tabindex="7" class="waves-effect waves-light btn" id="cancelUpdateSemesterButton">Cancel</a>
                     </fieldset>
                 </div>
