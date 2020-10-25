@@ -477,27 +477,30 @@ function updateSemesterForAssociatedAssignments(semester) {
 }
 
 function validateUserInputs(season, year) {
-
     // Check for empty/no season selection.
     if (season === "" || season == null) {
         dialog.showErrorBox("Error", "You must select a season/term.");
         return false;
     }
 
-    // Check for empty/all space year value.
-    if (year.trim() === "" || year == null) {
-        dialog.showErrorBox("Error", "You must enter a valid year of study.");
-        return false;
-    }
+    // First we extract second last digit of the current year.
+    // Then we deduct one from it to get the maximum allowed second last digit for the year.
+    let secondLastDigit = currentYear.toString().substr(2, 1);
+    let maxAllowedSecondLastDigit = parseInt(secondLastDigit) - 1;
 
-    // Only if above two validations did not fail, check year value.
-    if (parseInt(year) < minimumYear || parseInt(year) > currentYear) {
+    // Build the RegEx dynamically based on maxAllowedSecondLastDigit and currentYear.
+    let yearRegExp = new RegExp("^" + "(20[0-" + maxAllowedSecondLastDigit + "][0-9]|" + currentYear + ")$");
+
+    // Validation for year.
+    if (yearRegExp.test(year)) {
+        // If RegEx match is successful, then it means a valid year value is entered.
+        return true; 
+    }
+    else {
+        // If RegEx match fails, then we show error and fail the validation.
         dialog.showErrorBox("Error", "A valid year is between " + minimumYear + " and " + currentYear + ".");
         return false;
     }
-
-    // All values are correct.
-    return true;
 }
 
 // Event listener for Add button.
