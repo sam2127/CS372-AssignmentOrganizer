@@ -59,7 +59,7 @@ Everyone must study the code in `master` branch in order to gain a better unders
 ## Testing
 <br>
 
-Everybody in the group are responsible for testing. Everyone must test latest code changes every week on their assigned OS and report bugs on GitHub. While testing, everyone is supposed to write test cases that they tested, and submit a merge request when their test case writing and testing is complete. It is important to document and track testing activities in order to validate our work against project's functional and quality requirements. The test cases prepared here will be used in report.  
+Everybody in the group are responsible for testing. Everyone must test latest code changes every week on their assigned OS and report bugs on GitHub. While testing, everyone is supposed to [write test cases](https://www.guru99.com/test-case.html) that they tested, and submit a merge request when their test case writing and testing is complete. It is important to document and track testing activities in order to validate our work against project's functional and quality requirements. The test cases prepared here will be used in report.  
 <br>
 
 Test cases will be added to GitHub repo and writing test cases will be a team work. Shubham will provide test cases for home page which can be used as a template for other pages.  
