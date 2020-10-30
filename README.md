@@ -6,7 +6,10 @@ This is an [electron](https://www.electronjs.org/) based app that I created as p
 
 - [x] Add Semester
 - [x] Edit Semester
+- [x] Delete Semester
 - [x] Add Course
+- [x] Edit Course
+- [x] Delete Course
 - [ ] Add Assignment (added assignment is backed-up locally)
 - [ ] Open Assignment
 - [ ] Delete Assignment
