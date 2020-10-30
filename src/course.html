@@ -26,33 +26,65 @@
         </nav>
         <div class="row">
             <div class="col xl6 offset-xl3">
-                <div class="section center">
+                <!-- Creating a div for add course. -->
+                <div class="section center" id="addCourseDiv">
                     <fieldset>
                         <legend>
                             <h6>Add Course</h6>
                         </legend>
-                        <!-- TODO: Fix tab order so keyboard navigation through fields is simple. -->
                         <div class="input-field section">
-                            <select id="semesterSelection"></select>
+                            <input tabindex="1" type="text" id="semesterSelection" class="autocomplete"
+                                placeholder="Type to search">
                             <label for="semesterSelection">Semester</label>
                         </div>
                         <div class="input-field section">
-                            <input placeholder="e.g. MATH-100" id="courseCode" type="text" class="validate"
-                                data-length="10">
+                            <input tabindex="2" placeholder="e.g. MATH-100" id="courseCode" type="text" class="validate" data-length="10" maxlength="10">
                             <label for="courseCode">Course Code</label>
                         </div>
                         <div class="input-field section">
-                            <input placeholder="e.g. Intro to Calculus" id="courseName" type="text" class="validate"
-                                data-length="40">
+                            <input tabindex="3" placeholder="e.g. Intro to Calculus" id="courseName" type="text" class="validate" data-length="40" maxlength="40">
                             <label for="courseName">Course Name</label>
                         </div>
-                        <a class="waves-effect waves-light btn" id="addCourseButton">Add</a>
+                        <a class="waves-effect waves-light btn" id="addCourseButton">
+                            <i class='material-icons left'>add_circle</i>
+                            Add
+                        </a>
+                    </fieldset>
+                </div>
+                <!-- By default, the div for edit course will be hidden. -->
+                <div class="section center hide" id="editCourseDiv">
+                    <fieldset>
+                        <legend>
+                            <h6>Edit Course</h6>
+                        </legend>
+                        <div class="input-field section">
+                            <input type="hidden" id="editCourseId" value="">
+                            <input tabindex="1" type="text" id="editSemesterSelection" class="autocomplete"
+                                placeholder="Type to search">
+                            <label for="semesterSelection">Semester</label>
+                        </div>
+                        <div class="input-field section">
+                            <input tabindex="2" placeholder="e.g. MATH-100" id="editCourseCode" type="text" class="validate" data-length="10" maxlength="10">
+                            <label for="courseCode">Course Code</label>
+                        </div>
+                        <div class="input-field section">
+                            <input tabindex="3" placeholder="e.g. Intro to Calculus" id="editCourseName" type="text" class="validate" data-length="40" maxlength="40">
+                            <label for="courseName">Course Name</label>
+                        </div>
+                        <a class="waves-effect waves-light btn" id="updateCourseButton">
+                            <i class='material-icons left'>check_circle</i>
+                            Update
+                        </a>
+                        <a class="waves-effect waves-light btn" id="cancelEditCourseButton">
+                            <i class='material-icons left'>cancel</i>
+                            Cancel
+                        </a>
                     </fieldset>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col xl8 offset-xl2">
+            <div class="col xl12">
                 <fieldset>
                     <legend>
                         <h6>Existing Courses</h6>
