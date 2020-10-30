@@ -19,22 +19,18 @@ const createWindow = () => {
     });
 
     // Create our custom menu for the app.
-    let template = [
-        {
+    let template = [{
             label: "File",
-            submenu: [
-                {
-                    label: "Exit",
-                    click() {
-                        app.quit();
-                    }
+            submenu: [{
+                label: "Exit",
+                click() {
+                    app.quit();
                 }
-            ]
+            }]
         },
         {
             label: "Go",
-            submenu: [
-                {
+            submenu: [{
                     label: "Home",
                     click() {
                         mainWindow.loadFile(path.join(__dirname, 'home.html'));
@@ -71,8 +67,7 @@ const createWindow = () => {
         },
         {
             label: "View",
-            submenu: [
-                {
+            submenu: [{
                     label: "Reload",
                     accelerator: "CmdOrCtrl+R",
                     click(item, focusedWindow) {
@@ -98,11 +93,16 @@ const createWindow = () => {
         },
         {
             role: 'help',
-            submenu: [
-                {
+            submenu: [{
                     label: 'About Electron',
                     click() {
                         mainWindow.loadURL('https://electronjs.org');
+                    }
+                },
+                {
+                    label: "Help",
+                    click() {
+                        mainWindow.loadFile(path.join(__dirname, 'help.html'));
                     }
                 }
             ]

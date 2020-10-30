@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Help</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
+    <!--Import help.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/help.css" media="screen,projection" />
+    <!-- Import font awesome icons -->
+    <link href="../node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h3>Help</h3>
+        <div class="row" id="navigationMenu">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="teal tab col s3"><a href="#home">Home</a></li>
+                    <li class="teal tab col s3"><a class="active" href="#semester">Semester</a></li>
+                    <li class="teal tab col s3"><a href="#course">Course</a></li>
+                    <li class="teal tab col s3"><a href="#assignment">Assignment</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div id="home" class="col s12">This will return user to home page</div>
+        <div id="semester" class="col s12">
+            <div class="row">
+
+                <div class="col s12 m4 l3">
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><a href="#addSemester">Add Semester</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#editSemester">Edit Semester</td>
+                            </tr>      
+                    </table> 
+                </div>
+
+                <div class="col s12 m8 l9">
+
+                    <h5 id="addSemester">ADD SEMESTER</h5>
+                    <p>(1) Select your term from the drop menu.</p>
+                    <img src="./assets/images/semester/term.png" alt="term" >
+                    <p>(2) Type your year of study.</p>
+                    <img src="./assets/images/semester/year.png" alt="year" >
+                    <p>(3) Click add.</p>
+                    <img src="./assets/images/semester/addButton.png" alt="add button" >
+                    <p>(4) You will see the year of study in the list of existing semesters.</p>
+                    <img src="./assets/images/semester/addedYear.png" alt="added year" >
+                    <p>(5) Click on the year to view your added semester.</p>
+                    <img src="./assets/images/semester/yearDropDown.png" alt="year drop-down" >
+
+                    <h5 id="editSemester">EDIT SEMESTER</h5>
+                    <p>(1) Click on the year conatiner the term you want to edit.</p>
+                    <img src="./assets/images/semester/year2.png" alt="year" >
+                    <p>(2) Next to the term you want to modify, click the edit button. </p>
+                    <img src="./assets/images/semester/editButton.png" alt="edit button" >
+                    <p>(3) In the box, you can modify the term or the year. </p>
+                    <img src="./assets/images/semester/editSemester.png" alt="edit semester" >
+                    <p>(4) Click update to save change(s) or cancel if you do not want to make change(s).</p>
+                    <img src="./assets/images/semester/updateCancel.png" alt="update/cancel" >
+
+
+                </div>
+            </div>
+        </div>
+        <div id="course" class="col s12">
+            <div class="row">
+
+                <div class="col s12 m4 l3">
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><a href="#addCourse">Add Course</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#editCourse">Edit Course</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#deleteCourse">Delete Course</td>
+                            </tr>
+                            </table> 
+                </div>
+
+                <div class="col s12 m8 l9">
+
+                    <h5 id="addCourse">ADD COURSE</h5>
+                    <p>(1) Search for the semester you want to add a course for e.g. Winter 2020. You Can select from the search result in the drop down menu. </p>
+                    <img src="./assets/images/course/searchSemester.png" alt="search semester" >
+                    <p>(2) Type your course code.</p>
+                    <img src="./assets/images/course/courseCode.png" alt="course code" >
+                    <p>(3) Type your course name.</p>
+                    <img src="./assets/images/course/courseName.png" alt="course name" >
+                    <p>(4) Click add.</p>
+                    <img src="./assets/images/course/addButton.png" alt="add button" >
+                    <p>(5) Click on the year to view the list of Course(s)</p>
+                    <img src="./assets/images/course/ListOfCourses.png" alt="list of courses" >
+
+                    <h5 id="editCourse">EDIT COURSE</h5>
+                    <p>(1) Click on the year conatining the course you want to modify.</p>
+                    <img src="./assets/images/course/ListOfCourses.png" alt="list of course" >
+                    <p>(2) Next to the course you want to modify, click the edit button.</p>
+                    <img src="./assets/images/course/editButton.png" alt="edit button" >
+                    <p>(3) In the box, you can modify the semester, course code and/or course name.</p>
+                    <img src="./assets/images/course/editCourse.png" alt="edit course" >
+                    <p>(4) Click update to save change(s) or cancel if you do not want to make change(s)</p>
+                    <img src="./assets/images/course/updateCancel.png" alt="update/cancel" >
+
+                    <h5 id="deleteCourse">DELETE COURSE</h5>
+                    <p>(1) Click on the year conatining the course you want to delete.</p>
+                    <img src="./assets/images/course/ListOfCourses.png" alt="list of courses" >
+                    <p>(2) Next to the course you want to delete, click the delete button.</p>
+                    <img src="./assets/images/course/deleteButton.png" alt="delete button" >
+                    <p>(3) From the pop-up dialog box select Yes to confirm deleting the course or No to cancel deleting the course. </p>
+                    <img src="./assets/images/course/selectYes.png" alt="Select Yes/No" >
+                    
+
+
+                </div>
+            </div>
+        </div>
+        <div id="assignment" class="col s12">add assignment info here</div>
+
+    </div>
+
+    </div>
+
+
+    </div>
+    <script src="assets/js/materialize.min.js"></script>
+    <script src="./help.js"></script>
+</body>
+
+</html>
