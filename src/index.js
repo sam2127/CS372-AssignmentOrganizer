@@ -100,9 +100,9 @@ const createWindow = () => {
             role: 'help',
             submenu: [
                 {
-                    label: 'About Electron',
+                    label: 'Help',
                     click() {
-                        mainWindow.loadURL('https://electronjs.org');
+                        mainWindow.loadFile(path.join(__dirname, "help.html"));
                     }
                 }
             ]

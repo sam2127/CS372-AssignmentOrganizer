@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Help</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../assets/css/materialize.min.css" media="screen,projection" />
+    <!--Import help.css-->
+    <link type="text/css" rel="stylesheet" href="../assets/css/help.css" media="screen,projection" />
+    <!-- Import font awesome icons -->
+    <link href="../../node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="col left">
+                    <ul class="sidenav sidenav-fixed left-align">
+                        <li class="no-padding">
+                            <ul class="collapsible collapsible-accordion">
+                                <li>
+                                    <div class="collapsible-header">Home</div>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li><a href="#">Introduction</a></li>
+                                            <li><a href="#">Getting Around</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="active">
+                                    <div class="collapsible-header">Semester</div>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li><a href="#addSemester">Add Semester</a></li>
+                                            <li><a href="#editSemester">Edit Semester</a></li>
+                                            <li><a href="#">Delete Semester</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header">Course</div>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li><a href="./course_help.html#addCourse">Add Course</a></li>
+                                            <li><a href="./course_help.html#editCourse">Edit Course</a></li>
+                                            <li><a href="#">Delete Course</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <h5>Getting Started</h5>
+            <div id="home" class="col s12">This will return user to home page</div>
+            <div id="semester" class="col s12">
+                <div id="addSemester" class="col">
+                    <h5>ADD SEMESTER</h5>
+                    <p>(1) Select your term from the drop menu.</p>
+                    <img src="../assets/images/semester/term.png" alt="term">
+                    <p>(2) Type your year of study.</p>
+                    <img src="../assets/images/semester/year.png" alt="year">
+                    <p>(3) Click add.</p>
+                    <img src="../assets/images/semester/addButton.png" alt="add button">
+                    <p>(4) You will see the year of study in the list of existing semesters.</p>
+                    <img src="../assets/images/semester/addedYear.png" alt="added year">
+                    <p>(5) Click on the year to view your added semester.</p>
+                    <img src="../assets/images/semester/yearDropDown.png" alt="year drop-down">
+                    <h5 id="editSemester">EDIT SEMESTER</h5>
+                    <p>(1) Click on the year conatiner the term you want to edit.</p>
+                    <img src="../assets/images/semester/year2.png" alt="year">
+                    <p>(2) Next to the term you want to modify, click the edit button. </p>
+                    <img src="../assets/images/semester/editButton.png" alt="edit button">
+                    <p>(3) In the box, you can modify the term or the year. </p>
+                    <img src="../assets/images/semester/editSemester.png" alt="edit semester">
+                    <p>(4) Click update to save change(s) or cancel if you do not want to make change(s).</p>
+                    <img src="../assets/images/semester/updateCancel.png" alt="update/cancel">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/materialize.min.js"></script>
+    <script src="../help.js"></script>
+</body>
+
+</html>
