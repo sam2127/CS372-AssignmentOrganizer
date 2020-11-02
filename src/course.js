@@ -681,26 +681,57 @@ function updateCourseForAssociatedAssignments(course) {
 }
 
 function validateUserInputs(term, courseCode, courseName) {
+    // Check if all three fields are empty.
+    var error = false;
+    var errorMessage = "You must do the following:\n";
+
     // Check for empty/no semester selection.
     if (term == null || term.trim() === "") {
-        dialog.showErrorBox("Error", "You must select a semester.");
-        return false;
+        //dialog.showErrorBox("Error", "You must select a semester.");
+        //return false;
+        errorMessage += "* Select a Semester.\n"
+        error = true;
     }
 
     // Check for empty course code.
-    if (courseCode == null && courseCode.trim() === "") {
-        dialog.showErrorBox("Error", "You must enter course Code.");
-        return false;
+    if (courseCode == null || courseCode.trim() === "") {
+        //dialog.showErrorBox("Error", "You must enter course Code.");
+        //return false;
+        errorMessage += "* Enter a Course Code.\n"
+        error = true;
     }
 
     // Check for empty course name.
     if (courseName == null || courseName.trim() === "") {
-        dialog.showErrorBox("Error", "You must enter course Name.");
+        //dialog.showErrorBox("Error", "You must enter course Name.");
+        //return false;
+        errorMessage += "* Enter a Course Name.\n"
+        error = true;
+    }
+
+    if(error) {
+        dialog.showErrorBox("Error", errorMessage);
         return false;
     }
 
-    // TODO: Add course code and course name regex based validation. 
+    //Regex to check user entered valid course code
+    let courseCodeRegExp = new RegExp("^[a-zA-Z-_\\d\\s]{1,10}$");
+    if(!courseCodeRegExp.test(courseCode)) {
+        errorMessage += "* Enter a valid Course Code. (Only digits, letters, spaces and dashes are allowed, example: Math-100).\n"
+        error = true; 
+    }
 
+    //Regex to check user entered valid course name
+    let courseNameRegExp = new RegExp("^[a-zA-Z-'\\d\\s]{1,}$");
+    if(!courseNameRegExp.test(courseName)) {
+        errorMessage += "* Enter a valid Course Name. (Only digits, letters, spaces, apostrophes and dashes are allowed, example: Intro to Calculus).\n"
+        error = true; 
+    }
+
+    if(error) {
+        dialog.showErrorBox("Error!", errorMessage);
+        return false;
+    }
     // All good.
     return true;
 }
