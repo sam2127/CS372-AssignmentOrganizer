@@ -681,7 +681,8 @@ function updateCourseForAssociatedAssignments(course) {
 }
 
 function validateUserInputs(term, courseCode, courseName) {
-    // Check if all three fields are empty.
+    
+    //Creating variables to handle errors
     var error = false;
     var errorMessage = "You must do the following:\n";
 
