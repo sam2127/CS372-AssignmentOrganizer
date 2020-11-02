@@ -712,14 +712,14 @@ function validateUserInputs(term, courseCode, courseName) {
     //Regex to check user entered valid course code
     let courseCodeRegExp = new RegExp("^[a-zA-Z-_\\d\\s]{1,10}$");
     if(!courseCodeRegExp.test(courseCode)) {
-        errorMessage += "* Enter a valid Course Code. (Only digits, letters, spaces and dashes are allowed, example: Math-100).\n"
+        errorMessage += "* Enter a valid Course Code. (Only digits, letters, spaces, underscores and dashes are allowed, example: Math-100).\n"
         error = true; 
     }
 
     //Regex to check user entered valid course name
-    let courseNameRegExp = new RegExp("^[a-zA-Z-'\\d\\s]{1,}$");
+    let courseNameRegExp = new RegExp("^[a-zA-Z-_'\\d\\s]{1,}$");
     if(!courseNameRegExp.test(courseName)) {
-        errorMessage += "* Enter a valid Course Name. (Only digits, letters, spaces, apostrophes and dashes are allowed, example: Intro to Calculus).\n"
+        errorMessage += "* Enter a valid Course Name. (Only digits, letters, spaces, underscores, apostrophes and dashes are allowed, example: Intro to Calculus).\n"
         error = true; 
     }
 
