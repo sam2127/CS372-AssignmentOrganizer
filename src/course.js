@@ -687,24 +687,18 @@ function validateUserInputs(term, courseCode, courseName) {
 
     // Check for empty/no semester selection.
     if (term == null || term.trim() === "") {
-        //dialog.showErrorBox("Error", "You must select a semester.");
-        //return false;
         errorMessage += "* Select a Semester.\n"
         error = true;
     }
 
     // Check for empty course code.
     if (courseCode == null || courseCode.trim() === "") {
-        //dialog.showErrorBox("Error", "You must enter course Code.");
-        //return false;
         errorMessage += "* Enter a Course Code.\n"
         error = true;
     }
 
     // Check for empty course name.
     if (courseName == null || courseName.trim() === "") {
-        //dialog.showErrorBox("Error", "You must enter course Name.");
-        //return false;
         errorMessage += "* Enter a Course Name.\n"
         error = true;
     }
