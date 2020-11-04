@@ -710,14 +710,14 @@ function validateUserInputs(term, courseCode, courseName) {
     }
 
     //Regex to check user entered valid course code
-    let courseCodeRegExp = new RegExp("^[a-zA-Z-_\\d\\s]{1,10}$");
+    let courseCodeRegExp = new RegExp("^[a-zA-Z]{2,2}[a-zA-Z-_\\d\\s]{0,8}$");
     if(!courseCodeRegExp.test(courseCode)) {
         errorMessage += "* Enter a valid Course Code. (Only digits, letters, spaces, underscores and dashes are allowed, example: Math-100).\n"
         error = true; 
     }
 
     //Regex to check user entered valid course name
-    let courseNameRegExp = new RegExp("^[a-zA-Z-_'\\d\\s]{1,}$");
+    let courseNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z-_'\\d\\s]{0,39}$");
     if(!courseNameRegExp.test(courseName)) {
         errorMessage += "* Enter a valid Course Name. (Only digits, letters, spaces, underscores, apostrophes and dashes are allowed, example: Intro to Calculus).\n"
         error = true; 
@@ -789,6 +789,76 @@ function deleteCourse(courseId) {
     // Refresh the existing courses list.
     listExistingCourses();
 }
+
+// Function to validate Course Code while user is entering input 
+function validateCourseCode(event) {
+    var cCode = event.currentTarget;
+    var cc = cCode.value;
+
+    //If the user has only entered 1 character so far
+    if(cc.length == 1) {
+        var regCourse = /^[a-zA-Z]$/;  
+    }
+    //If the user has only entered 2 character so far
+    else if(cc.length == 2) {
+        var regCourse = /^[a-zA-Z]{2,2}$/;
+    }
+    else {
+        var regCourse = /^[a-zA-Z]{2,2}[a-zA-Z-_\d\s]{0,8}$/;
+    }
+
+    //Change font to red if regex match fails
+    if(regCourse.test(cc) == false) {
+        cCode.style.color = "red";
+    }
+    else {
+        cCode.style.color = "black";
+    }
+}
+
+// Function to validate Course Code size once user moves to another field
+function validateCourseCodeSize(event) {
+    var cCode = event.currentTarget;
+    var cc = cCode.value;
+    
+    debugger;
+    //Change font to red if user only entered one character and moved to another field
+    if(cc.length == 1) {
+        cCode.style.color = "red";
+    }
+    else {
+        cCode.style.color = "black";
+    }
+}
+
+// Function to validate Course Name while user is entering input
+function validateCourseName(event) {
+    //Declaring variables
+    var cName = event.currentTarget;
+    var cn = cName.value;
+    var regCourse = /^[a-zA-Z][a-zA-Z-_'\d\s]{0,39}$/;
+
+    //Change font to red if regex match fails
+    if(regCourse.test(cn) == false) {
+        cName.style.color = "red";
+    }
+    else {
+        cName.style.color = "black";
+    }
+}
+
+
+// Event listeners for Course Code while user is entering input
+courseCode.addEventListener("keyup",validateCourseCode);
+editCourseCode.addEventListener("keyup",validateCourseCode);
+
+// Validate input size for course code once user moves to another field
+courseCode.addEventListener("change",validateCourseCodeSize);
+editCourseCode.addEventListener("change",validateCourseCodeSize);
+
+// Event listeners for Course Name while user is entering input
+courseName.addEventListener("keyup",validateCourseName);
+editCourseName.addEventListener("keyup",validateCourseName);
 
 // Event listener for Add button associated with addCourse() function.
 addCourseButton.addEventListener("click", function (params) {
