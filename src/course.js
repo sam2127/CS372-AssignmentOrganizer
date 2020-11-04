@@ -821,7 +821,6 @@ function validateCourseCodeSize(event) {
     var cCode = event.currentTarget;
     var cc = cCode.value;
     
-    debugger;
     //Change font to red if user only entered one character and moved to another field
     if(cc.length == 1) {
         cCode.style.color = "red";
