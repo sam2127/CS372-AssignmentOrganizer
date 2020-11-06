@@ -15,9 +15,7 @@ const editSemesterId = document.getElementById("editSemesterId");
 const editSeasonSelection = document.getElementById("editSeasonSelection");
 const editYear = document.getElementById("editYear");
 const updateSemesterButton = document.getElementById("updateSemesterButton");
-const cancelUpdateSemesterButton = document.getElementById(
-  "cancelUpdateSemesterButton"
-);
+const cancelUpdateSemesterButton = document.getElementById("cancelUpdateSemesterButton");
 const allSemestersList = document.getElementById("allSemestersList");
 
 // Storing the path of settings.json file in the javascript object named settingsFile.
@@ -595,9 +593,21 @@ function updateSemesterForAssociatedAssignments(semester) {
 }
 
 function validateUserInputs(season, year) {
+  // Check for empty/no season and empty/no year entered.
+  if ((season === "" || season == null) && (year == "" || year == null)) {
+    dialog.showErrorBox("Error!", "You must select a season/term and enter a valid year.");
+    return false;
+  }
+
   // Check for empty/no season selection.
   if (season === "" || season == null) {
-    dialog.showErrorBox("Error", "You must select a season/term.");
+    dialog.showErrorBox("Error!", "You must select a season/term.");
+    return false;
+  }
+
+  // Check for empty/no year entered.
+  if (year === "" || year == null) {
+    dialog.showErrorBox("Error!", "You must enter a valid year.");
     return false;
   }
 
@@ -618,7 +628,7 @@ function validateUserInputs(season, year) {
   } else {
     // If RegEx match fails, then we show error and fail the validation.
     dialog.showErrorBox(
-      "Error",
+      "Error!",
       "A valid year is between " + minimumYear + " and " + currentYear + "."
     );
     return false;

@@ -680,27 +680,51 @@ function updateCourseForAssociatedAssignments(course) {
     }
 }
 
+
+//Validating the input from user
 function validateUserInputs(term, courseCode, courseName) {
+    
+    //Creating variables to handle errors
+    let error = false;
+    let errorMessage = "You must do the following:\n";
+
+    //Regex to check user entered valid course code
+    let courseCodeRegExp = new RegExp("^[a-zA-Z]{2,2}[a-zA-Z-_\\d\\s]{0,8}$");
+
+    //Regex to check user entered valid course name
+    let courseNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z-_'\\d\\s]{0,39}$");
+    
     // Check for empty/no semester selection.
     if (term == null || term.trim() === "") {
-        dialog.showErrorBox("Error", "You must select a semester.");
-        return false;
+        errorMessage += "- Select a Semester.\n"
+        error = true;
     }
 
     // Check for empty course code.
-    if (courseCode == null && courseCode.trim() === "") {
-        dialog.showErrorBox("Error", "You must enter course Code.");
-        return false;
+    if (courseCode == null || courseCode.trim() === "") {
+        errorMessage += "- Enter a course code.\n";
+        error = true;
+    }
+    else if (!courseCodeRegExp.test(courseCode)) {
+        errorMessage += "- Course code must start with 2 alphabets and can only contain digits, letters, spaces, underscores and dashes.\n";
+        error = true;
     }
 
     // Check for empty course name.
     if (courseName == null || courseName.trim() === "") {
-        dialog.showErrorBox("Error", "You must enter course Name.");
-        return false;
+        errorMessage += "- Enter a course name.\n"
+        error = true;
+    }
+    else if (!courseNameRegExp.test(courseName)) {
+        errorMessage += "- Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes.\n"
+        error = true;
     }
 
-    // TODO: Add course code and course name regex based validation. 
 
+    if(error) {
+        dialog.showErrorBox("Error!", errorMessage);
+        return false;
+    }
     // All good.
     return true;
 }
