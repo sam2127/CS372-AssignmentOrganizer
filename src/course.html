@@ -72,17 +72,25 @@
                             <input type="hidden" id="editCourseId" value="">
                             <input tabindex="1" type="text" id="editSemesterSelection" class="autocomplete"
                                 placeholder="Type to search">
-                            <label for="semesterSelection">Semester</label>
+                            <label for="editSemesterSelection">Semester</label>
                         </div>
                         <div class="input-field section">
                             <input tabindex="2" placeholder="e.g. MATH-100" id="editCourseCode" type="text"
-                                class="validate" data-length="10" maxlength="10">
-                            <label for="courseCode">Course Code</label>
+                                class="validate" data-length="10" maxlength="10" pattern="^[a-zA-Z]{2,2}[a-zA-Z-_\\\d\\\s]{0,8}$">
+                            <label for="editCourseCode">Course Code</label>
+                            <span class="helper-text left-align"
+                                data-error="Course code must start with 2 alphabets and can only contain digits, letters, spaces, underscores and dashes."
+                                data-success="Looks good!">Course code must start with 2 alphabets and can only contain
+                                digits, letters, spaces, underscores and dashes.</span>
                         </div>
                         <div class="input-field section">
                             <input tabindex="3" placeholder="e.g. Intro to Calculus" id="editCourseName" type="text"
-                                class="validate" data-length="40" maxlength="40">
-                            <label for="courseName">Course Name</label>
+                                class="validate" data-length="40" maxlength="40" pattern="^[a-zA-Z][a-zA-Z-_'\\\d\\\s]{0,39}$">
+                            <label for="editCourseName">Course Name</label>
+                            <span class="helper-text left-align"
+                                data-error="Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes."
+                                data-success="Looks good!">Course name must start with an alphabet and can only contain
+                                digits, letters, spaces, underscores and dashes.</span>
                         </div>
                         <a class="waves-effect waves-light btn" id="updateCourseButton">
                             <i class='material-icons left'>check_circle</i>
