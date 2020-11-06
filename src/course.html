@@ -38,14 +38,23 @@
                             <label for="semesterSelection">Semester</label>
                         </div>
                         <div class="input-field section">
-                            <input tabindex="2" placeholder="e.g. MATH-100" id="courseCode" type="text" class="validate" data-length="10" maxlength="10" pattern="^[a-zA-Z]{2,2}[a-zA-Z-_\\d\\s]{0,8}$">
+                            <input tabindex="2" placeholder="e.g. MATH-100" id="courseCode" type="text" class="validate"
+                                data-length="10" maxlength="10" pattern="^[a-zA-Z]{2,2}[a-zA-Z-_\\d\\s]{0,8}$">
                             <label for="courseCode">Course Code</label>
-                            <span class="helper-text left-align" data-error="Course code must start with 2 alphabets and can only contain digits, letters, spaces, underscores and dashes." data-success="Looks good!">Course code must start with 2 alphabets and can only contain digits, letters, spaces, underscores and dashes.</span>
+                            <span class="helper-text left-align"
+                                data-error="Course code must start with 2 alphabets and can only contain digits, letters, spaces, underscores and dashes."
+                                data-success="Looks good!">Course code must start with 2 alphabets and can only contain
+                                digits, letters, spaces, underscores and dashes.</span>
                         </div>
                         <div class="input-field section">
-                            <input tabindex="3" placeholder="e.g. Intro to Calculus" id="courseName" type="text" class="validate" data-length="40" maxlength="40" pattern="^[a-zA-Z][a-zA-Z-_'\\d\\s]{0,39}$">
+                            <input tabindex="3" placeholder="e.g. Intro to Calculus" id="courseName" type="text"
+                                class="validate" data-length="40" maxlength="40"
+                                pattern="^[a-zA-Z][a-zA-Z-_'\\d\\s]{0,39}$">
                             <label for="courseName">Course Name</label>
-                            <span class="helper-text left-align" data-error="Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes." data-success="Looks good!">Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes.</span>
+                            <span class="helper-text left-align"
+                                data-error="Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes."
+                                data-success="Looks good!">Course name must start with an alphabet and can only contain
+                                digits, letters, spaces, underscores and dashes.</span>
                         </div>
                         <a class="waves-effect waves-light btn" id="addCourseButton">
                             <i class='material-icons left'>add_circle</i>
@@ -66,11 +75,13 @@
                             <label for="semesterSelection">Semester</label>
                         </div>
                         <div class="input-field section">
-                            <input tabindex="2" placeholder="e.g. MATH-100" id="editCourseCode" type="text" class="validate" data-length="10" maxlength="10">
+                            <input tabindex="2" placeholder="e.g. MATH-100" id="editCourseCode" type="text"
+                                class="validate" data-length="10" maxlength="10">
                             <label for="courseCode">Course Code</label>
                         </div>
                         <div class="input-field section">
-                            <input tabindex="3" placeholder="e.g. Intro to Calculus" id="editCourseName" type="text" class="validate" data-length="40" maxlength="40">
+                            <input tabindex="3" placeholder="e.g. Intro to Calculus" id="editCourseName" type="text"
+                                class="validate" data-length="40" maxlength="40">
                             <label for="courseName">Course Name</label>
                         </div>
                         <a class="waves-effect waves-light btn" id="updateCourseButton">
@@ -87,14 +98,10 @@
         </div>
         <div class="row">
             <div class="col xl12">
-                <fieldset>
-                    <legend>
-                        <h6>Existing Courses</h6>
-                    </legend>
-                    <div class="section" id="allCoursesList">
-                        <!-- Existing courses will dynamically be displayed here -->
-                    </div>
-                </fieldset>
+                <h5>Existing Courses</h5>
+                <div class="section card-panel" id="allCoursesList">
+                    <!-- Existing courses will dynamically be displayed here -->
+                </div>
             </div>
         </div>
     </div>
