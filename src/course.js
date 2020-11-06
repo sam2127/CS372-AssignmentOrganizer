@@ -90,16 +90,16 @@ function populateSemestersSearch() {
             semesterSelection.setAttribute(
                 "placeholder",
                 "Type to search - " +
-                    existingSemesters.length +
-                    " semester(s) available"
+                existingSemesters.length +
+                " semester(s) available"
             );
 
             // Do the same for edit course form.
             editTerm.setAttribute(
                 "placeholder",
                 "Type to search -" +
-                    existingSemesters.length +
-                    " semester(s) available"
+                existingSemesters.length +
+                " semester(s) available"
             );
 
             existingSemesters.forEach((semester) => {
@@ -324,9 +324,9 @@ function addCourse(isUpdate = false, courseId = 0) {
                 dialog.showErrorBox(
                     "Error!",
                     course.courseCode +
-                        " " +
-                        course.courseName +
-                        " already exists."
+                    " " +
+                    course.courseName +
+                    " already exists."
                 );
 
                 duplicateCourseExists = true;
@@ -683,7 +683,7 @@ function updateCourseForAssociatedAssignments(course) {
 
 //Validating the input from user
 function validateUserInputs(term, courseCode, courseName) {
-    
+
     //Creating variables to handle errors
     let error = false;
     let errorMessage = "You must do the following:\n";
@@ -693,38 +693,30 @@ function validateUserInputs(term, courseCode, courseName) {
 
     //Regex to check user entered valid course name
     let courseNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z-_'\\d\\s]{0,39}$");
-    
+
     // Check for empty/no semester selection.
     if (term == null || term.trim() === "") {
         errorMessage += "- Select a Semester.\n"
         error = true;
     }
 
-    // Check for empty course code.
-    if (courseCode == null || courseCode.trim() === "") {
-        errorMessage += "- Enter a course code.\n";
-        error = true;
-    }
-    else if (!courseCodeRegExp.test(courseCode)) {
+    // Check for valid Course Code format using Regex.
+    if (!courseCodeRegExp.test(courseCode)) {
         errorMessage += "- Course code must start with 2 alphabets and can only contain digits, letters, spaces, underscores and dashes.\n";
         error = true;
     }
 
-    // Check for empty course name.
-    if (courseName == null || courseName.trim() === "") {
-        errorMessage += "- Enter a course name.\n"
-        error = true;
-    }
-    else if (!courseNameRegExp.test(courseName)) {
+    // Check for valid Course Name format using Regex.
+    if (!courseNameRegExp.test(courseName)) {
         errorMessage += "- Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes.\n"
         error = true;
     }
 
-
-    if(error) {
+    if (error) {
         dialog.showErrorBox("Error!", errorMessage);
         return false;
     }
+
     // All good.
     return true;
 }
