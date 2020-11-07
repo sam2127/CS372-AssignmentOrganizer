@@ -116,7 +116,7 @@ function listExistingSemesters() {
                     htmlString += "<thead><tr><th>Semester</th>";
                     htmlString += "<th>Courses</th>";
                     htmlString += "<th>Actions</th>";
-                    htmlString += "</thead>";
+                    htmlString += "</tr></thead>";
                     htmlString += "<tbody>";
                 }
 

@@ -18,9 +18,7 @@ const editTerm = document.getElementById("editSemesterSelection");
 const editCourseCode = document.getElementById("editCourseCode");
 const editCourseName = document.getElementById("editCourseName");
 const updateCourseButton = document.getElementById("updateCourseButton");
-const cancelEditCourseButton = document.getElementById(
-    "cancelEditCourseButton"
-);
+const cancelEditCourseButton = document.getElementById("cancelEditCourseButton");
 const allCoursesList = document.getElementById("allCoursesList");
 
 // Storing the path for settings.json file.
@@ -29,6 +27,7 @@ const settingsFile = path.join(__dirname, "./.config/settings.json");
 let semestersDataFile;
 let coursesDataFile;
 let assignmentsDataFile;
+let assignmentRootFolder;
 
 function initializePage() {
     // Initialize input character counter for courseCode text box.
@@ -53,22 +52,17 @@ function readSettings() {
         let settings = JSON.parse(fs.readFileSync(settingsFile, "utf-8"));
 
         // Joining the specified path segments for semesters.json file using the data stored in settings.json and storing the path.
-        semestersDataFile = path.join(
-            settings.configRootFolder,
-            settings.semestersDataFile
-        );
+        semestersDataFile = path.join( settings.configRootFolder, settings.semestersDataFile );
 
         // Joining the specified path segments for courses.json file using the data stored in settings.json and storing the path.
-        coursesDataFile = path.join(
-            settings.configRootFolder,
-            settings.coursesDataFile
-        );
+        coursesDataFile = path.join( settings.configRootFolder, settings.coursesDataFile );
 
         // Joining the specified path segments for assignments.json file using the data stored in settings.json and storing the path.
-        assignmentsDataFile = path.join(
-            settings.configRootFolder,
-            settings.assignmentsDataFile
-        );
+        assignmentsDataFile = path.join( settings.configRootFolder, settings.assignmentsDataFile );
+        
+        // Get the value of assignmentRootFolder from settings.
+        assignmentRootFolder = settings.assignmentRootFolder;
+        
     } catch (error) {
         dialog.showErrorBox("Error!", "Error reading settings file.");
     }
@@ -87,20 +81,10 @@ function populateSemestersSearch() {
         // Check if there are any existing semesters and then create a label for each semester.
         if (existingSemesters.length > 0) {
             // Let the user know the number of courses available to search from.
-            semesterSelection.setAttribute(
-                "placeholder",
-                "Type to search - " +
-                existingSemesters.length +
-                " semester(s) available"
-            );
+            semesterSelection.setAttribute( "placeholder", "Type to search - " + existingSemesters.length + " semester(s) available" );
 
             // Do the same for edit course form.
-            editTerm.setAttribute(
-                "placeholder",
-                "Type to search -" +
-                existingSemesters.length +
-                " semester(s) available"
-            );
+            editTerm.setAttribute( "placeholder", "Type to search -" + existingSemesters.length + " semester(s) available" );
 
             existingSemesters.forEach((semester) => {
                 label = semester.season + " " + semester.year;
@@ -110,10 +94,8 @@ function populateSemestersSearch() {
             });
         } else {
             // Make number of semesters available to search from, known to user.
-            semesterSelection.setAttribute(
-                "placeholder",
-                "No semester found - First add a semester."
-            );
+            semesterSelection.setAttribute( "placeholder", "No semester found - First add a semester." );
+            
             label = "No semester found - Add one first.";
 
             // We just need label for searching. Icon URL is set to null for all search results.
@@ -124,29 +106,20 @@ function populateSemestersSearch() {
         search = document.querySelectorAll(".autocomplete");
 
         // Initialize Materialize autocomplete search instance.
-        autoCompleteInstance = M.Autocomplete.init(search, {
-            data: mySemesters,
-        });
+        autoCompleteInstance = M.Autocomplete.init(search, { data: mySemesters, });
+        
     } catch (error) {
         if (error.code === "ENOENT")
-            dialog.showErrorBox(
-                "File not found.",
-                "Existing Semesters could not be populated."
-            );
+            dialog.showErrorBox( "File not found.", "Existing Semesters could not be populated." );
         else
-            dialog.showErrorBox(
-                "Error!",
-                "An unknown error occurred while loading semesters."
-            );
+            dialog.showErrorBox( "Error!", "An unknown error occurred while loading semesters." );
     }
 }
 
 function listExistingCourses() {
     try {
         // Reads the existing courses from courses.json and then parse as a JSON object.
-        let existingCourses = JSON.parse(
-            fs.readFileSync(coursesDataFile, "utf-8")
-        );
+        let existingCourses = JSON.parse( fs.readFileSync(coursesDataFile, "utf-8") );
 
         let htmlString = "";
         let prevYear = 9999;
@@ -188,7 +161,7 @@ function listExistingCourses() {
                     htmlString += "<th>Course Name</th>";
                     htmlString += "<th>Assignments</th>";
                     htmlString += "<th>Actions</th>";
-                    htmlString += "</thead>";
+                    htmlString += "</tr></thead>";
                     htmlString += "<tbody>";
                 }
 
@@ -197,28 +170,17 @@ function listExistingCourses() {
 
                 // Append the current course's information with the number of assignments for that course.
                 htmlString += "<tr>";
-                htmlString +=
-                    "<td>" + course.season + " " + course.year + "</td>";
-                htmlString +=
-                    "<td class='center aligned'>" +
-                    course.courseCode +
-                    "</td> ";
+                htmlString += "<td>" + course.season + " " + course.year + "</td>";
+                htmlString += "<td class='center aligned'>" + course.courseCode + "</td> ";
                 htmlString += "<td>" + course.courseName + "</td>";
-                htmlString +=
-                    "<td class='center aligned'>" + assignmentCount + "</td>";
+                htmlString += "<td class='center aligned'>" + assignmentCount + "</td>";
 
                 // Implemented 'onclick' event listener for the "Edit" button and semester id is passed as an argument.
-                htmlString +=
-                    "<td><button class='waves-effect waves-light btn tooltipped' data-position='top' data-tooltip='Edit' onclick='enableEditCourse(\"" +
-                    course.id +
-                    "\")'><i class='material-icons'>edit</i></button></button>";
+                htmlString += "<td><button class='waves-effect waves-light btn tooltipped' data-position='top' data-tooltip='Edit' onclick='enableEditCourse(\"" + course.id + "\")'><i class='material-icons'>edit</i></button></button>";
 
                 // Add 'Delete' action if there is no assignment created for current course.
                 if (assignmentCount === 0) {
-                    htmlString +=
-                        "&nbsp;<button class='waves-effect waves-light btn tooltipped' data-position='top' data-tooltip='Delete' onclick='deleteCourse(\"" +
-                        course.id +
-                        "\")'><i class='material-icons'>delete</i></button>";
+                    htmlString += "&nbsp;<button class='waves-effect waves-light btn tooltipped' data-position='top' data-tooltip='Delete' onclick='deleteCourse(\"" + course.id + "\")'><i class='material-icons'>delete</i></button>";
                 }
 
                 htmlString += "</td></tr>";
@@ -237,10 +199,8 @@ function listExistingCourses() {
             htmlString += "</ul>";
         } else {
             htmlString = "<i class='far fa-frown fa-4x'></i>";
-            htmlString +=
-                "<div class='flow-text'>&nbsp;Nothing to show here.</div>";
-            htmlString +=
-                "<div class='flow-text'>Add a course from above.</div>";
+            htmlString += "<div class='flow-text'>&nbsp;Nothing to show here.</div>";
+            htmlString += "<div class='flow-text'>Add a course from above.</div>";
         }
 
         // Finally use the course list in form of a dynamically built HTML string as the `innerHTML` property for a `div` element to display as a formatted course list.
@@ -253,31 +213,19 @@ function listExistingCourses() {
         // Refresh courses list.
         let collapsible = document.querySelectorAll(".collapsible");
         M.Collapsible.init(collapsible, {});
+
     } catch (error) {
         if (error.code === "ENOENT")
-            dialog.showErrorBox(
-                "File not found.",
-                "Existing courses could not be read."
-            );
+            dialog.showErrorBox( "File not found.", "Existing courses could not be read." );
         else
-            dialog.showErrorBox(
-                "Error!",
-                "An unknown error occurred while reading course data file."
-            );
+            dialog.showErrorBox( "Error!", "An unknown error occurred while reading course data file." );
     }
 }
 
 function addCourse(isUpdate = false, courseId = 0) {
     try {
-        let semester,
-            semesterText,
-            courseCodeText,
-            courseNameText,
-            allCourses,
-            newCourse,
-            changedCourse;
-        let success,
-            duplicateCourseExists = false;
+        let semester, semesterText, courseCodeText, courseNameText, allCourses, newCourse, changedCourse;
+        let success, duplicateCourseExists = false;
         let previousMaxId = 0;
 
         // Check if we are updating an existing course or adding a new course and read the user input accordingly.
@@ -292,24 +240,18 @@ function addCourse(isUpdate = false, courseId = 0) {
         }
 
         // Validations for semester, course code and course text.
-        success = validateUserInputs(
-            semesterText,
-            courseCodeText,
-            courseNameText
-        );
+        success = validateUserInputs( semesterText, courseCodeText, courseNameText );
 
         // No further processing if validation fails.
-        if (!success) return;
+        if (!success) 
+            return;
 
         // Find the details of selected semester.
         semester = findSemester(semesterText);
 
         // If semester is not found due to any error, then don't process anything further.
         if (semester == null)
-            return dialog.showErrorBox(
-                "Error",
-                "An error occurred while fetching semester details."
-            );
+            return dialog.showErrorBox( "Error", "An error occurred while fetching semester details." );
 
         // Reads the existing courses from courses.json and then parse as a JSON object.
         allCourses = JSON.parse(fs.readFileSync(coursesDataFile, "utf-8"));
@@ -321,19 +263,14 @@ function addCourse(isUpdate = false, courseId = 0) {
                 course.courseName === courseNameText &&
                 course.semesterId === semester.id
             ) {
-                dialog.showErrorBox(
-                    "Error!",
-                    course.courseCode +
-                    " " +
-                    course.courseName +
-                    " already exists."
-                );
+                dialog.showErrorBox( "Error!", course.courseCode + " " + course.courseName + " already exists." );
 
                 duplicateCourseExists = true;
             }
         });
 
         if (!duplicateCourseExists) {
+
             if (isUpdate) {
                 for (const course of allCourses) {
                     // Check all the courses based on the course id of the course being edited and update it.
@@ -354,6 +291,7 @@ function addCourse(isUpdate = false, courseId = 0) {
             } else {
                 // When the existing courses array is not empty, find ID of previous course.
                 if (allCourses.length > 0) {
+
                     for (let course of allCourses) {
                         // Check all the courses and previousMaxId should be assigned the greatest course id value from all the course IDs.
                         if (course.id > previousMaxId)
@@ -384,10 +322,7 @@ function addCourse(isUpdate = false, courseId = 0) {
 
             // Write all the courses back to file.
             try {
-                fs.writeFileSync(
-                    coursesDataFile,
-                    JSON.stringify(allCourses, null, 4)
-                );
+                fs.writeFileSync( coursesDataFile, JSON.stringify(allCourses, null, 4) );
 
                 // Show success message.
                 let detailMessage;
@@ -395,11 +330,7 @@ function addCourse(isUpdate = false, courseId = 0) {
                 if (isUpdate)
                     detailMessage = "The course was updated successfully.";
                 else
-                    detailMessage =
-                        newCourse.courseCode +
-                        " " +
-                        newCourse.courseName +
-                        " added successfully.";
+                    detailMessage = newCourse.courseCode + " " + newCourse.courseName + " added successfully.";
 
                 // Creating an options object to be used for providing feedback using the dialog module.
                 let options = {
@@ -415,10 +346,7 @@ function addCourse(isUpdate = false, courseId = 0) {
                 // Displaying the options dialog box on current window.
                 dialog.showMessageBoxSync(currentWindow, options);
             } catch (error) {
-                dialog.showErrorBox(
-                    "Unknown Error!",
-                    "Error while saving the course."
-                );
+                dialog.showErrorBox( "Unknown Error!", "Error while saving the course." );
             }
         }
 
@@ -439,15 +367,9 @@ function addCourse(isUpdate = false, courseId = 0) {
         listExistingCourses();
     } catch (error) {
         if (error.code === "ENOENT")
-            dialog.showErrorBox(
-                "File not found.",
-                "Existing courses could not be read."
-            );
+            dialog.showErrorBox( "File not found.", "Existing courses could not be read." );
         else
-            dialog.showErrorBox(
-                "Error!",
-                "Error processing the selected course."
-            );
+            dialog.showErrorBox( "Error!", "Error processing the selected course." );
     }
 }
 
@@ -472,25 +394,18 @@ function getAssignmentsCount(courseCode) {
 
     try {
         // Reading all the existing assignments from the file.
-        let allAssignments = JSON.parse(
-            fs.readFileSync(assignmentsDataFile, "utf-8")
-        );
+        let allAssignments = JSON.parse( fs.readFileSync(assignmentsDataFile, "utf-8") );
 
         // Find all the assignments with the same course code.
         for (const assignment of allAssignments) {
-            if (courseCode === assignment.courseCode) assignmentCount++;
+            if (courseCode === assignment.courseCode) 
+                assignmentCount++;
         }
     } catch (error) {
         if (error.code === "ENOENT")
-            dialog.showErrorBox(
-                "File not found.",
-                "Existing assignments could not be read."
-            );
+            dialog.showErrorBox( "File not found.", "Existing assignments could not be read." );
         else
-            dialog.showErrorBox(
-                "Error!",
-                "An unknown error occurred while reading assignments data file."
-            );
+            dialog.showErrorBox( "Error!", "An unknown error occurred while reading assignments data file." );
     }
 
     // Returns the number of assignments in a course.
@@ -509,9 +424,7 @@ function findSemester(term) {
 
     try {
         // Read all the existing semesters from the file.
-        let existingSemesters = JSON.parse(
-            fs.readFileSync(semestersDataFile, "utf-8")
-        );
+        let existingSemesters = JSON.parse( fs.readFileSync(semestersDataFile, "utf-8") );
 
         // Find the semester from the file that has the same year and season.
         existingSemesters.forEach((semester) => {
@@ -521,15 +434,9 @@ function findSemester(term) {
         });
     } catch (error) {
         if (error.code === "ENOENT")
-            dialog.showErrorBox(
-                "File not found.",
-                "Failed to find details of selected semester."
-            );
+            dialog.showErrorBox( "File not found.", "Failed to find details of selected semester." );
         else
-            dialog.showErrorBox(
-                "Error!",
-                "An unknown error occurred while finding selected semester's details."
-            );
+            dialog.showErrorBox( "Error!", "An unknown error occurred while finding selected semester's details." );
     }
 
     // Return semester object if a matching semester was found, otherwise return a null object.
@@ -608,19 +515,21 @@ function updateCourse() {
 }
 
 function updateCourseForAssociatedAssignments(course) {
-    let allAssignments;
+
+    let allAssignments, fileName, newAssignmentDir, newFilePath;
 
     try {
         // Reading all the existing assignments from assignments.json into allAssignments object.
-        allAssignments = JSON.parse(
-            fs.readFileSync(assignmentsDataFile, "utf-8")
-        );
+        allAssignments = JSON.parse(fs.readFileSync(assignmentsDataFile, "utf-8"));
 
         // Check if there are any existing assignments in the allAssignments JSON object obtained from assignments.json.
         if (allAssignments.length > 0) {
+
             // For each existing assignment in the assignments.json check for each assignment that has same course id as the course being edited and then update the semester and course details for each such assignment.
             for (let assignment of allAssignments) {
+
                 if (parseInt(assignment.courseId) === parseInt(course.id)) {
+
                     assignment.semesterId = course.semesterId;
                     assignment.season = course.season;
                     assignment.year = course.year;
@@ -628,7 +537,38 @@ function updateCourseForAssociatedAssignments(course) {
                     assignment.courseCode = course.courseCode;
                     assignment.courseName = course.courseName;
 
-                    // TODO: Move assignment files to updated course folder.
+                    // Move assignment file to updated semester(season and/or year) directory structure.
+
+                    // Extract only file name from file path.
+                    fileName = path.basename(assignment.file);
+
+                    // Based on semester and/or course code update, create a new directory path where file will be moved.
+                    newAssignmentDir = path.join(assignmentRootFolder, assignment.year, assignment.season, assignment.courseCode);
+
+                    // Create a complete path with the file name, required for Copy operation.
+                    newFilePath = path.join(newAssignmentDir, fileName);
+
+                    try {
+
+                        // Create directory structure(it may or may not exist already) before moving file.
+                        fs.mkdirSync(newAssignmentDir, { recursive: true });
+
+                        // Copy the assignment file to updated course directory.
+                        fs.copyFileSync(assignment.file, newFilePath);
+
+                        // Delete the assignment file from old course directory.
+                        fs.unlinkSync(assignment.file);
+
+                        // Remove the directory as well, but only if it's empty.
+                        removeEmptyAssignmentDir(path.dirname(assignment.file));
+
+                    } catch (error) {
+                        // Show a non-blocking error message.
+                        M.toast({ html: "Error deleting assignment file <b>" + assignment.file + "</b>" });
+                    }
+
+                    // Update file path for the assignment.
+                    assignment.file = newFilePath;
                 }
             }
 
@@ -637,7 +577,7 @@ function updateCourseForAssociatedAssignments(course) {
             allAssignments.sort(function (current, next) {
                 return next.year - current.year;
             });
-
+            
             // Once sorted by year, sort based on month per year.
             allAssignments.sort(function (current, next) {
                 if (current.year === next.year) {
@@ -649,34 +589,19 @@ function updateCourseForAssociatedAssignments(course) {
 
             // Write all the assignments back to datastore file.
             try {
-                fs.writeFileSync(
-                    assignmentsDataFile,
-                    JSON.stringify(allAssignments, null, 4)
-                );
+                fs.writeFileSync(assignmentsDataFile, JSON.stringify(allAssignments, null, 4));
 
                 // Show a non-blocking success message.
-                M.toast({
-                    html:
-                        "Associated assignments successfully synced with course update.",
-                });
+                M.toast({ html: "Associated assignments successfully synced with course update." })
             } catch (error) {
-                dialog.showErrorBox(
-                    "Unknown Error!",
-                    "Error while updating the course for associated assignments."
-                );
+                dialog.showErrorBox("Unknown Error!", "Error while updating the course for associated assignments.");
             }
         }
     } catch (error) {
         if (error.code === "ENOENT")
-            dialog.showErrorBox(
-                "Assignments file not found.",
-                "Course for associated assignments will not be updated."
-            );
+            dialog.showErrorBox("Assignments file not found.", "Course for associated assignments will not be updated.");
         else
-            dialog.showErrorBox(
-                "Unknown Error!",
-                "An unknown error occurred while reading assignments data file."
-            );
+            dialog.showErrorBox("Unknown Error!", "An unknown error occurred while reading assignments data file.");
     }
 }
 
@@ -722,6 +647,37 @@ function validateUserInputs(term, courseCode, courseName) {
 }
 
 /**
+ * Remove empty assignment directory in reverse order, recursively.
+ * @param {String} directory Path to directory to be deleted
+ */
+function removeEmptyAssignmentDir(directory) {
+
+    let parentDir;
+
+    // Do not delete assignmentRootFolder, even if it's empty.
+    if (directory === assignmentRootFolder) {
+        return;
+    }
+
+    try {
+        // Check if the directory is empty or not.
+        if (fs.readdirSync(directory).length === 0) {
+
+            // Store parent directory path.
+            parentDir = path.dirname(directory);
+
+            // Remove the empty directory.
+            fs.rmdirSync(directory);
+
+            // Remove parent directory if it's empty.
+            removeEmptyAssignmentDir(parentDir);
+        }
+    } catch (error) {
+        dialog.showErrorBox("Error!", "Error while deleting empty assignment directory " + directory);
+    }
+}
+
+/**
  * Deletes a course.
  * @param {String} courseId Id of the semester to be deleted
  */
@@ -748,9 +704,7 @@ function deleteCourse(courseId) {
     if (response === 1) {
         try {
             // Read existing courses.
-            existingCourses = JSON.parse(
-                fs.readFileSync(coursesDataFile, "utf-8")
-            );
+            existingCourses = JSON.parse( fs.readFileSync(coursesDataFile, "utf-8") );
 
             // Get the index of the semester having the Id to delete.
             index = existingCourses.findIndex(function (course) {
@@ -761,18 +715,13 @@ function deleteCourse(courseId) {
             existingCourses.splice(index, 1);
 
             // Write updated array to course data file.
-            fs.writeFileSync(
-                coursesDataFile,
-                JSON.stringify(existingCourses, null, 4)
-            );
+            fs.writeFileSync( coursesDataFile, JSON.stringify(existingCourses, null, 4) );
 
             // Show a non-blocking success message.
             M.toast({ html: "Course deleted successfully." });
+
         } catch (error) {
-            dialog.showErrorBox(
-                "Error!",
-                "Error while deleting selected course."
-            );
+            dialog.showErrorBox( "Error!", "Error while deleting selected course." );
         }
     }
 
