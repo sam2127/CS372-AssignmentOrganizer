@@ -10,9 +10,9 @@ This is an [electron](https://www.electronjs.org/) based app that I created as p
 - [x] Add Course
 - [x] Edit Course
 - [x] Delete Course
-- [ ] Add Assignment (added assignment is backed-up locally)
-- [ ] Open Assignment
-- [ ] Delete Assignment
+- [x] Add Assignment (added assignment is backed-up locally)
+- [x] Open Assignment
+- [x] Delete Assignment
 - [ ] Set custom folder for back-up
 - [ ] Back-up on cloud i.e. Google Drive
 

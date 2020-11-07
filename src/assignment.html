@@ -4,54 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <title>Assignments</title>
-    <link rel="stylesheet" href="index.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
+    <!-- Import font awesome icons -->
+    <link href="../node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
 </head>
 
 <body>
-    <p><a href="javascript:window.close();">Close</a></p>
-    <h1>Assignments</h1>
-    <div>
-        <div>
-            <fieldset>
-                <legend>Add a new assignment</legend>
-                <table>
-                    <tr>
-                        <td>
+    <div class="container center">
+        <h4>Assignments</h4>
+        <h6>Add/Edit Assignments.</h6>
+        <nav class="teal">
+            <div class="nav-wrapper left">
+                <div class="col xl6">
+                    <a href="./home.html" class="breadcrumb">&nbsp;Home</a>
+                    <a href="#" class="breadcrumb">Assignments</a>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col xl6 offset-xl3">
+                <div class="section center">
+                    <fieldset>
+                        <legend>
+                            <h6>Add Assignment</h6>
+                        </legend>
+                        <div class="input-field section">
+                            <input tabindex="1" type="text" id="courseSelection" class="autocomplete"
+                                placeholder="Type to search">
                             <label for="courseSelection">Course</label>
-                        </td>
-                        <td>
-                            <select id="courseSelection">
-                                <option value="" default>Please Select</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="assignmentName">Name:</label>
-                        </td>
-                        <td>
-                            <input id="assignmentName" type="text" maxlength="30">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button id="selectFile">Select File</button>
-                        </td>
-                        <td>
-                            <label id="fileName"></label>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-            <p>
-                <button id="uploadFileButton">Upload</button>
-            </p>
+                        </div>
+                        <div class="input-field section">
+                            <input tabindex="2" placeholder="e.g. Group Project Report or My Awesome Presentation"
+                                id="assignmentName" type="text" class="validate" data-length="25">
+                            <label for="assignmentName">Assignment Name</label>
+                        </div>
+                        <div class="file-field input-field">
+                            <div tabindex="3" class="btn" id="selectFileButton">
+                                <span>
+                                    <i class='material-icons left'>file_upload</i>
+                                    File
+                                </span>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path" id="fileNameText" type="text" placeholder="Select a file"
+                                    readonly>
+                                <span class="helper-text left-align">You can upload any file as compressed
+                                    archive.</span>
+                            </div>
+                        </div>
+                        <div class="input-field section">
+                            <div class="switch">
+                                <label for="uploadToCloud">Upload To Cloud?&nbsp;&nbsp;</label>
+                                <label>
+                                    <input tabindex="4" type="checkbox" id="uploadToCloud">
+                                    <span class="lever"></span>
+                                    Yes
+                                </label>
+                            </div>
+                        </div>
+                        <a tabindex="5" class="waves-effect waves-light btn" id="uploadFileButton">
+                            <i class='material-icons left'>backup</i>
+                            Back-up
+                        </a>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col xl12">
+                <h5>Existing Assignments</h5>
+                <div class="section card-panel" id="assignmentList">
+                    <!-- Existing assignments will dynamically be displayed here -->
+                </div>
+            </div>
         </div>
     </div>
-    <div id="assignmentList"></div>
+    <script src="assets/js/materialize.min.js"></script>
+    <script src="./assignment.js"></script>
 </body>
-<script>
-    require('./assignment.js');
-</script>
 
 </html>
