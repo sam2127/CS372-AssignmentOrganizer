@@ -42,10 +42,6 @@ Everyone must study the code in `master` branch in order to gain a better unders
 
 | Task                      | Owner             |
 |---------------------------|-------------------|
-| Edit Course               | Shubham           |
-| Add assignment (Local)    | Shubham           |
-| Open assignment (Local)   | Shubham           |
-| Delete assignment (Local) | Shubham           |
 | Settings                  | Shubham           |
 | About (HTML only)         | Shawn, Raju       |
 | Help Document (HTML only) | Shawn, Raju       |
