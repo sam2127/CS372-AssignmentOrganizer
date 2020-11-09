@@ -81,10 +81,10 @@ function populateSemestersSearch() {
         // Check if there are any existing semesters and then create a label for each semester.
         if (existingSemesters.length > 0) {
             // Let the user know the number of courses available to search from.
-            semesterSelection.setAttribute( "placeholder", "Type to search - " + existingSemesters.length + " semester(s) available" );
+            semesterSelection.setAttribute( "placeholder", "Type to search and select from - " + existingSemesters.length + " semester(s) available" );
 
             // Do the same for edit course form.
-            editTerm.setAttribute( "placeholder", "Type to search -" + existingSemesters.length + " semester(s) available" );
+            editTerm.setAttribute( "placeholder", "Type to search and select from - " + existingSemesters.length + " semester(s) available" );
 
             existingSemesters.forEach((semester) => {
                 label = semester.season + " " + semester.year;
@@ -258,11 +258,7 @@ function addCourse(isUpdate = false, courseId = 0) {
 
         // Check if the course already exists or not.
         allCourses.forEach((course) => {
-            if (
-                course.courseCode === courseCodeText &&
-                course.courseName === courseNameText &&
-                course.semesterId === semester.id
-            ) {
+            if ( course.courseCode.toUpperCase() === courseCodeText.toUpperCase() && course.semesterId === semester.id ) {
                 dialog.showErrorBox( "Error!", course.courseCode + " " + course.courseName + " already exists." );
 
                 duplicateCourseExists = true;
