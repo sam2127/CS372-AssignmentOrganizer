@@ -13,7 +13,7 @@ This is an [electron](https://www.electronjs.org/) based app that I created as p
 - [x] Add Assignment (added assignment is backed-up locally)
 - [x] Open Assignment
 - [x] Delete Assignment
-- [ ] Set custom folder for back-up
+- [x] Set custom folder for back-up
 - [ ] Back-up on cloud i.e. Google Drive
 
 Download latest release from [here](https://github.com/sam2127/AssignmentOrganizer.git).
