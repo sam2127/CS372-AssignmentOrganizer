@@ -42,11 +42,9 @@ Everyone must study the code in `master` branch in order to gain a better unders
 
 | Task                      | Owner             |
 |---------------------------|-------------------|
-| Settings                  | Shubham           |
 | About (HTML only)         | Shawn, Raju       |
 | Help Document (HTML only) | Shawn, Raju       |
 | Google Drive Integration  | Shubham, Harpinder|
-| Validations for all forms | Harpinder         |
 | Bug fixing                | All               |
 | README update             | Shubham           |
 | Code comments             | All               |
@@ -111,4 +109,4 @@ If we commit to the tasks in coding and testing sections, then half of those tas
 
 | Task                      | Owner     |
 |---------------------------|-----------|
-| Google Drive Integration  | Harpinder |
+| Google Drive Integration  | Shubham, Harpinder |
