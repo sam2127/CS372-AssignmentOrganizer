@@ -258,7 +258,7 @@ function addCourse(isUpdate = false, courseId = 0) {
 
         // Check if the course already exists or not.
         allCourses.forEach((course) => {
-            if ( course.courseCode.toUpperCase() === courseCodeText.toUpperCase() && course.semesterId === semester.id ) {
+            if ( course.courseCode.toUpperCase() === courseCodeText.toUpperCase() && course.semesterId === semester.id && course.courseName.toUpperCase() === courseNameText.toUpperCase()) {
                 dialog.showErrorBox( "Error!", course.courseCode + " " + course.courseName + " already exists." );
 
                 duplicateCourseExists = true;
