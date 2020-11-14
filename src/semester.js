@@ -1,5 +1,5 @@
 // Using remote module to do inter-process communication (IPC) between the renderer process (web page) and the main process.
-const remote = require("electron").remote;
+const { remote } = require("electron");
 // Display native system dialogs for opening and saving files, alerting, etc.
 const dialog = remote.dialog;
 // Node.js file system module allows to read/write the files on computer system.
@@ -176,26 +176,10 @@ function listExistingSemesters() {
     }
 }
 
-function addSemester(isUpdate = false, id = 0) {
+function addSemester(isUpdate = false, id = 0, season, year) {
     try {
-        let season, year, success, existingSemesters, newSemester, month, changedSemester;
+        let existingSemesters, newSemester, month, changedSemester;
         let previousMaxId = 0;
-
-        // If user wants to update/change existing semesters and clicks on the Edit button then we store the season and values for that semester.
-        if (isUpdate) {
-            season = editSeasonSelection.value
-            year = editYear.value;
-        } else {
-            season = seasonSelection.value;
-            year = yearText.value;
-        }
-
-        // Validations for season and year.
-        success = validateUserInputs(season, year);
-
-        // No further processing if validation fails.
-        if (!success)
-            return;
 
         // Read existing data from datastore file and store as JSON object array in RAM.
         existingSemesters = JSON.parse(fs.readFileSync(semestersDataFile, "utf-8"));
@@ -203,7 +187,7 @@ function addSemester(isUpdate = false, id = 0) {
         // Check if the semester already exists or not.
         for (const semester of existingSemesters) {
             if (semester.year === year && semester.season === season) {
-                return dialog.showErrorBox("Error!", semester.season + " " + semester.year + " semester already exists.");
+                return dialog.showErrorBox("Error!", "\"" + semester.season + " " + semester.year + "\" semester already exists.");
             }
         }
 
@@ -286,7 +270,7 @@ function addSemester(isUpdate = false, id = 0) {
             if (isUpdate)
                 detailMessage = "The semester was updated successfully.";
             else
-                detailMessage = newSemester.season + " " + newSemester.year + " added successfully.";
+                detailMessage = "\"" + newSemester.season + " " + newSemester.year + "\" added successfully.";
 
             // Creating an options object to be used for providing feedback using the dialog module.
             let options = {
@@ -311,15 +295,8 @@ function addSemester(isUpdate = false, id = 0) {
 
             // Update semester details for associated assignments.
             updateSemesterForAssociatedAssignments(changedSemester);
-
-            // Hide and clear edit semester form.
-            cancelSemesterEdit();
-        } else {
-            // Clear add semester form.
-            seasonSelection.selectedIndex = 0;
-            M.FormSelect.init(seasonSelection, {});
-            yearText.value = "";
         }
+
     } catch (error) {
         if (error.code === "ENOENT")
             dialog.showErrorBox("File not found.", "Existing semesters could not be read.");
@@ -327,7 +304,8 @@ function addSemester(isUpdate = false, id = 0) {
             dialog.showErrorBox("Unknown Error!", "Error while reading existing semesters.");
     }
 
-    listExistingSemesters();
+    // Reload page so all forms are cleared and existing semester list is also reloaded.
+    window.location.reload();
 }
 
 function getCourseCountForSemester(semesterId) {
@@ -355,6 +333,14 @@ function getCourseCountForSemester(semesterId) {
 }
 
 function enableEditSemester(semesterId) {
+
+    // Check if an edit semester operation is already in progress or not.
+    // If a semester is being edited, we must not allow another edit operation.
+    // Parallel semester manipulation operations can create data discrepancy in our semester data file.
+    if (editSemesterId.value !== "") {
+        return dialog.showErrorBox("Another operation in progress", "Please either cancel or complete ongoing edit semester operation before trying to edit another semester.");
+    }
+
     // Hide add semester form.
     document.getElementById("addSemesterDiv").classList.add("hide");
 
@@ -401,6 +387,18 @@ function cancelSemesterEdit() {
 }
 
 function updateSemester() {
+
+    // Validate user input.
+    let season = editSeasonSelection.value
+    let year = editYear.value.trim();
+
+    // Validations for season and year.
+    let success = validateUserInputs(season, year);
+
+    // No further processing if validation fails.
+    if (!success)
+        return;
+
     // Ask for confirmation.
     let options = {
         type: "question",
@@ -418,7 +416,7 @@ function updateSemester() {
 
     if (response === 1) {
         // Pass id of the semester to addSemester function.
-        addSemester(isUpdate = true, id = editSemesterId.value);
+        addSemester(isUpdate = true, id = editSemesterId.value, season, year);
     }
 }
 
@@ -562,12 +560,12 @@ function updateSemesterForAssociatedAssignments(semester) {
 }
 
 function validateUserInputs(season, year) {
-    // Check for empty/no season selection.
-    if (season === "" || season == null) {
-        dialog.showErrorBox("Error", "You must select a season/term.");
-        return false;
-    }
 
+    //Creating variables to handle errors
+    let error = false;
+    let errorMessage = "You must do the following:\n";
+
+    // Build dynamic RegEx for year validation.
     // First we extract second last digit of the current year.
     // Then we deduct one from it to get the maximum allowed second last digit for the year.
     let secondLastDigit = currentYear.toString().substr(2, 1);
@@ -576,16 +574,25 @@ function validateUserInputs(season, year) {
     // Build the RegEx dynamically based on maxAllowedSecondLastDigit and currentYear.
     let yearRegExp = new RegExp("^" + "(20[0-" + maxAllowedSecondLastDigit + "][0-9]|" + currentYear + ")$");
 
-    // Validation for year.
-    if (yearRegExp.test(year)) {
-        // If RegEx match is successful, then it means a valid year value is entered.
-        return true;
+    // Check for empty/no semester selection.
+    if (season == null || season.trim() === "") {
+        errorMessage += "- Select a Semester.\n"
+        error = true;
     }
-    else {
-        // If RegEx match fails, then we show error and fail the validation.
-        dialog.showErrorBox("Error", "A valid year is between " + minimumYear + " and " + currentYear + ".");
+
+    // Validation for year using RegEx.
+    if (!yearRegExp.test(year)) {
+        errorMessage += "- Enter a valid year between " + minimumYear + " and " + currentYear + ".";
+        error = true;
+    }
+
+    if (error) {
+        dialog.showErrorBox("Error!", errorMessage);
         return false;
     }
+
+    // All good.
+    return true;
 }
 
 /**
@@ -628,6 +635,13 @@ function deleteSemester(semesterId) {
     let options, currentWindow, response;
     let existingSemesters, index;
 
+    // Check if an edit semester operation is already in progress or not.
+    // If a semester is being edited, we must not allow delete operation.
+    // Parallel semester manipulation operations can create data discrepancy in our semester data file.
+    if (editSemesterId.value !== "") {
+        return dialog.showErrorBox("Another operation in progress", "Please either cancel or complete ongoing edit semester operation before trying to delete a semester.");
+    }
+
     // Ask for confirmation before delete.
     options = {
         type: "question",
@@ -644,7 +658,7 @@ function deleteSemester(semesterId) {
     response = dialog.showMessageBoxSync(currentWindow, options);
 
     // If user responded "Yes", then only delete the semester.
-    if (response === 1) { 
+    if (response === 1) {
 
         try {
             // Read existing semesters.
@@ -664,18 +678,30 @@ function deleteSemester(semesterId) {
             // Show a non-blocking success message.
             M.toast({ html: "Semester deleted successfully." });
 
+            // Refresh the existing semesters list.
+            listExistingSemesters();
+
         } catch (error) {
             dialog.showErrorBox("Error!", "Error while deleting selected semester.");
         }
     }
-
-    // Refresh the existing semesters list.
-    listExistingSemesters();
 }
 
 // Event listener for Add button.
 addSemesterButton.addEventListener("click", function (event) {
-    addSemester(false, 0);
+
+    // Validate user input.
+    let season = seasonSelection.value
+    let year = yearText.value.trim();
+
+    // Validations for season and year.
+    let success = validateUserInputs(season, year);
+
+    // No further processing if validation fails.
+    if (!success)
+        return;
+
+    addSemester(false, 0, season, year);
 });
 
 // Event listener for Update button.
