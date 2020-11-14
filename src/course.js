@@ -605,7 +605,7 @@ function validateUserInputs(term, courseCode, courseName) {
     let courseCodeRegExp = new RegExp("^[a-zA-Z]{2,2}[a-zA-Z-_\\d\\s]{0,8}$");
 
     //Regex to check user entered valid course name
-    let courseNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z-_'+=#.&$:,;?\"\\/()*!@%^\\d\\s]{0,39}$");
+    let courseNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z-_'+=#.&$:,;?\\\"\\/()*!@%^\\d\\s]{0,39}$");
 
     // Check for empty/no semester selection.
     if (term == null || term.trim() === "") {
@@ -621,7 +621,7 @@ function validateUserInputs(term, courseCode, courseName) {
 
     // Check for valid Course Name format using Regex.
     if (!courseNameRegExp.test(courseName)) {
-        errorMessage += "- Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes.\n"
+        errorMessage += "- Course name must start with an alphabet. It must not contain any of these { } [ ] | \ ` ~ characters.\n";
         error = true;
     }
 
