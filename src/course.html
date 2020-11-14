@@ -55,9 +55,9 @@
                                 class="validate" data-length="40" maxlength="40" pattern="^[a-zA-Z][a-zA-Z-_'+=#.&$:,;?&quot\\\/()*!@%^\\\d\\\s]{0,39}$">
                             <label for="courseName">Course Name</label>
                             <span class="helper-text left-align"
-                                data-error="Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes."
+                                data-error="Course name must start with an alphabet. It must not contain any of these { } [ ] | \ ` ~ characters."
                                 data-success="Looks good!">
-                                Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes.
+                                Course name must start with an alphabet. It must not contain any of these { } [ ] | \ ` ~ characters.
                             </span>
                         </div>
                         <button tabindex="4" class="waves-effect waves-light btn" id="addCourseButton">
@@ -93,12 +93,12 @@
                         </div>
                         <div class="input-field section">
                             <input required tabindex="3" placeholder="e.g. Intro to Calculus" id="editCourseName" type="text"
-                                class="validate" data-length="40" maxlength="40" pattern="^[a-zA-Z][a-zA-Z-_'\\\d\\\s]{0,39}$">
+                                class="validate" data-length="40" maxlength="40" pattern="^[a-zA-Z][a-zA-Z-_'+=#.&$:,;?&quot\\\/()*!@%^\\\d\\\s]{0,39}$">
                             <label for="editCourseName">Course Name</label>
                             <span class="helper-text left-align"
-                                data-error="Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes."
+                                data-error="Course name must start with an alphabet. It must not contain any of these { } [ ] | \ ` ~ characters."
                                 data-success="Looks good!">
-                                Course name must start with an alphabet and can only contain digits, letters, spaces, underscores and dashes.
+                                Course name must start with an alphabet. It must not contain any of these { } [ ] | \ ` ~ characters.
                             </span>
                         </div>
                         <button tabindex="4" class="waves-effect waves-light btn" id="updateCourseButton">
