@@ -605,7 +605,7 @@ function validateUserInputs(term, courseCode, courseName) {
     let courseCodeRegExp = new RegExp("^[a-zA-Z]{2,2}[a-zA-Z-_\\d\\s]{0,8}$");
 
     //Regex to check user entered valid course name
-    let courseNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z-_'\\d\\s]{0,39}$");
+    let courseNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z-_'+=#.&$:,;?\"\\/()*!@%^\\d\\s]{0,39}$");
 
     // Check for empty/no semester selection.
     if (term == null || term.trim() === "") {
