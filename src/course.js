@@ -220,7 +220,7 @@ function listExistingCourses() {
 
 function addCourse(isUpdate = false, courseId = 0, semesterText, courseCodeText, courseNameText) {
     try {
-        let semester, allCourses, newCourse, changedCourse;
+        let semester, allCourses, newCourse, changedCourse, duplicateCourse;
         let duplicateCourseExists = false;
         let previousMaxId = 0;
         let detailMessage, options, currentWindow;
@@ -241,9 +241,8 @@ function addCourse(isUpdate = false, courseId = 0, semesterText, courseCodeText,
                 course.courseName === courseNameText &&
                 course.semesterId === semester.id) {
 
-                dialog.showErrorBox("Error!", "\"" + course.courseCode + " " + course.courseName + "\" already exists.");
-
                 duplicateCourseExists = true;
+                duplicateCourse = course;
             }
         });
 
@@ -324,7 +323,8 @@ function addCourse(isUpdate = false, courseId = 0, semesterText, courseCodeText,
             } catch (error) {
                 dialog.showErrorBox("Unknown Error!", "Error while saving the course.");
             }
-        }
+        } else
+            return dialog.showErrorBox("Error!", "\"" + duplicateCourse.courseCode + " " + duplicateCourse.courseName + "\" already exists.");
 
         if (isUpdate) {
             // Update course details for associated assignments.
@@ -481,7 +481,7 @@ function updateCourse() {
     // No further processing if validation fails.
     if (!success)
         return;
-    
+
     // Ask for confirmation.
     let options = {
         type: "question",
@@ -739,7 +739,7 @@ addCourseButton.addEventListener("click", function (params) {
     // No further processing if validation fails.
     if (!success)
         return;
-    
+
     addCourse(false, 0, semesterText, courseCodeText, courseNameText);
 });
 
