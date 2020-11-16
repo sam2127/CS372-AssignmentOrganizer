@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Help</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../assets/css/materialize.min.css" media="screen,projection" />
+    <!--Import help.css-->
+    <link type="text/css" rel="stylesheet" href="../assets/css/help.css" media="screen,projection" />
+    <!-- Import font awesome icons -->
+    <link href="../../node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col s2">
+                <ul class="sidenav sidenav-fixed left-align">
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <div class="collapsible-header">Home</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="#">Introduction</a></li>
+                                        <li><a href="#">Getting Around</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header">Semester</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="./semester_help.html#addsemester">Add Semester</a></li>
+                                        <li><a href="./semester_help.html#viewSemester">View Semester</a></li>
+                                        <li><a href="./semester_help.html#editSemester">Edit Semester</a></li>
+                                        <li><a href="./semester_help.html#deleteSemester">Delete Semester</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header">Course</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="./course_help.html#addCourse">Add Course</a></li>
+                                        <li><a href="./course_help.html#viewCourse">View Course</a></li>
+                                        <li><a href="./course_help.html#editCourse">Edit Course</a></li>
+                                        <li><a href="./course_help.html#deleteCourse">Delete Course</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <div class="collapsible-header">Assignment</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="#addAssignment">Add Assignment</a></li>
+                                        <li><a href="#viewAssignment">View Assigment</a></li>
+                                        <li><a href="#openAssignment">open Assignment</a></li>
+                                        <li><a href="#deleteAssignment">Delete Assignment</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="assignment" class="col s10">
+
+                <div class="row gettingStarted">
+                    <h5>Getting Started</h5>
+                    <div id="home" class="col 9">
+                        To get to the assignment page you can click on the assignment icon on the
+                        <a href="../home.html"> home page</a>. On the assignment page you can add a new assignment, view assignment count for each year, open an assignment or delete an assignment. In order to add an assignment, the course must be added
+                        first.
+                    </div>
+                </div>
+
+                <div id="addAssignment" class="row">
+                    <h5>Add Assignment</h5>
+                    <div class="col s9">
+                        <p>
+                            (1) In the course field start typing the name or code of the course e.g. Calculus or MATH-100. you can also find a course by the term or year it was taking e.g. Winter or 2020. You should immediately see a drop-down list of course(s) matching your input.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/add-assignment-course-field.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>(2) From the drop down select the course you want to add an assignment to. E.g. you can select "MATH-100 ==> Into to Calculus (Winter 2020)", or any other option from the drop-down list.</p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/add-assignment-course-field-dropdown.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>(3) Once the course name has being selected you can now enter the assignment name e.g. Group Project Report or My Awesome Presentation. Assignments name can be 25 max character in length.</p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/add-assignment-name-field.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>(4) After adding the assignment name, click on file to select the assignment file you want to back up. On windows the file explorer will open.</p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/add-assignment-file-select.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>(5) In the file explorer (for windows) browse to the file location and select your assignment file. After selecting your file click on ok. The file name should now be displayed as your selected file. </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/add-assignment-file-explorer.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>(6) Once your file has been selected, go ahead, and click on back up. For local back-up, your file would be saved in the location specified in the settings page.</p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/add-assignment-backup-button.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>
+                            (7) After clicking the back-up button you should now see a popup Success! dialogue box. Click ok and your assignment is now back-up and updated under the list of existing assignment. You can confirm the assignment was added successfully by
+                            <a href="#viewAssignment">viewing</a> the list of assignment for that year.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/add-assignment-success.png" class="responsive-img" alt="term"></div>
+                </div>
+
+                <div id="viewAssignment" class="row">
+                    <h5>View Assignment</h5>
+                    <div class="col s9">
+                        <p>
+                            <p>(1) To view an added assignment or previously added assignment start by clicking on the year the assignment was taken in e.g. 2020. You will then see a drop list of assignment. (Years are displayed in descending order.)</p>
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/view-assignment-year.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>
+                            (2) In the drop-down list you can view a list of all assignment added for that yea. From this drop down you will see information like semester, course code, name and if the assignment was backed-up to the cloud. You can
+                            <a href="#openAssignment">open</a> or
+                            <a href="#deleteAssignment">delete</a> an assignment file.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/view-assignment-year-dropdown.png" class="responsive-img" alt="term"></div>
+                </div>
+
+                <div id="openAssignment" class="row">
+                    <h5>Open Assignment</h5>
+                    <div class="col s9">
+                        <p>
+                            <p>(1) To open an assignment, start by clicking on the year the assignment was taken in e.g. 2020. You will then see a drop list of assignment. (Years are displayed in descending order.)</p>
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/view-assignment-year.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>
+                            (2) In the drop-down list of assignment click on the open button.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/open-assignment-button.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>
+                            (3) After clicking on open the assignment file should then open in its default file viewer. In our example "My Awesome Presentation" will open in Microsoft Words.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/opened-file.png" class="responsive-img" alt="term"></div>
+                </div>
+
+                <div id="deleteAssignment" class="row">
+                    <h5>Delete Assignment</h5>
+                    <div class="col s9">
+                        <p>
+                            <p>(1) To delete an assignment, start by clicking on the year the assignment was taken in e.g. 2020. You will then see a drop list of assignment. (Years are displayed in descending order.)</p>
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/view-assignment-year.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>
+                            (2) In the drop-down list of assignment click on the delete button next to the assignment you want to remove. E.g. My Awesome Presentation.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/delete-assignment-button.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>
+                            (3) After clicking on the delete button you will then see a pop-up dialogue box. Click Yes to give permission to delete the assignment or no to cancel and return to the assignment page.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="../assets/images/assignment/delete-assignment-permission.png" class="responsive-img" alt="term"></div>
+                    <div class="col s9">
+                        <p>
+                            (5) You can confirm an assignment was successfully removed by
+                            <a href="#viewAssignment">viewing</a> the list of remaining assignment for the year if it is the only assignment the year will be removed from the existing assignment list.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <script src="../assets/js/materialize.min.js"></script>
+    <script src="../help.js"></script>
+</body>
+
+</html>
