@@ -42,7 +42,6 @@ Everyone must study the code in `master` branch in order to gain a better unders
 
 | Task                      | Owner             |
 |---------------------------|-------------------|
-| About (HTML only)         | Shubham       |
 | Help Document (HTML only) | Shawn, Raju       |
 | Google Drive Integration  | Shubham, Harpinder|
 | Bug fixing                | All               |
