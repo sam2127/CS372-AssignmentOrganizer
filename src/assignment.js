@@ -1,6 +1,5 @@
-const remote = require("electron").remote;
+const { remote, shell } = require("electron");
 const dialog = remote.dialog;
-const { shell } = require("electron");
 const fs = require("fs");
 const path = require("path");
 
@@ -18,6 +17,9 @@ let courseDataFile;
 let assignmentsDataFile;
 let sourceFile = "";
 
+/**
+ * Initializes page elements when page is ready to load.
+ */
 function initializePage() {
     // Initialize input character counter for assignmentName text box.
     const assignmentNameCountInstance = new M.CharacterCounter(assignmentName);
@@ -32,13 +34,23 @@ function initializePage() {
     listExistingAssignments();
 }
 
+/**
+ * Read App's settings.
+ */
 function readSettings() {
-    try {
-        let settings = JSON.parse(fs.readFileSync(settingsFile, "utf-8"));
 
-        // Get the value of assignmentRootFolder from settings.
+    let settings;
+
+    try {
+        settings = JSON.parse(fs.readFileSync(settingsFile, "utf-8"));
+
+        // Get the name of the assignment root folder from settings.
         assignmentRootFolder = settings.assignmentRootFolder;
+
+        // Get the name of the course data file from settings.
         courseDataFile = path.join(settings.configRootFolder, settings.coursesDataFile);
+
+        // Get the name of the assignment data file from settings.
         assignmentsDataFile = path.join(settings.configRootFolder, settings.assignmentsDataFile);
 
     } catch (error) {
@@ -46,6 +58,9 @@ function readSettings() {
     }
 }
 
+/**
+ * Populates the course list which can be searched later.
+ */
 function populateCourseSearch() {
 
     let allCourses, myCourses = {};
@@ -85,6 +100,9 @@ function populateCourseSearch() {
     }
 }
 
+/**
+ * Lists all the existing assignments year wise.
+ */
 function listExistingAssignments() {
 
     let existingAssignments;
@@ -184,6 +202,11 @@ function listExistingAssignments() {
     }
 }
 
+/**
+ * Finds an existing course based on a given course code.
+ * @param {String} courseCode Course code to search for in existing courses.
+ * @returns {Object} A complete course object with all properties.
+ */
 function findCourse(courseCode) {
     let myCourse = "";
 
@@ -205,7 +228,7 @@ function findCourse(courseCode) {
  */
 function uploadFile() {
 
-    let selectedCourse, selectedCourseCode, course, assignmentDir, destinationPath;
+    let selectedCourse, selectedCourseCode, course, assignmentDir, destinationPath, destinationFileName;
     let cloudBackup, cloudFileURL;
     let existingAssignments, newAssignment, previousMaxId;
     let options, currentWindow;
@@ -232,8 +255,11 @@ function uploadFile() {
             // Create directory before uploading file.
             fs.mkdirSync(assignmentDir, { recursive: true });
 
+            // Prepend an unused number to file name so it is always a unique file name.
+            destinationFileName = (fs.readdirSync(assignmentDir).length + 1) + "-" + path.basename(sourceFile);
+
             // Set assignment file's path.
-            destinationPath = path.join(assignmentDir, path.basename(sourceFile));
+            destinationPath = path.join(assignmentDir, destinationFileName);
 
             try {
                 // Upload/Copy file.
@@ -341,6 +367,10 @@ function uploadFile() {
     listExistingAssignments();
 }
 
+/**
+ * Opens an assignment in an external program based on assignment's file type.
+ * @param {String} assignmentId ID of the assignment to be opened.
+ */
 function openAssignment(assignmentId) {
     try {
         // Read existing assignments.
@@ -359,6 +389,10 @@ function openAssignment(assignmentId) {
     }
 }
 
+/**
+ * Deletes an assignment and its file from local and cloud back-up.
+ * @param {String} assignmentId ID of the assignment to be deleted.
+ */
 function deleteAssignment(assignmentId) {
 
     let localDeleted = cloudDeleted = fileDeleteSuccess = recordDeleted = false;
@@ -475,7 +509,13 @@ function deleteAssignment(assignmentId) {
     }
 }
 
+/**
+ * Checks if the app is connected to internet or not.
+ * If the app is not connected to internet, it will not allow to select the option to upload to cloud.
+ * Also, informs the user why he can't upload to cloud.
+ */
 function shouldAllowCloudUploadOrNot() {
+    
     let uploadToCloudSelected = uploadToCloud.checked;
 
     if (uploadToCloudSelected) {
@@ -489,10 +529,14 @@ function shouldAllowCloudUploadOrNot() {
     }
 }
 
-function downloadAssignment(cloudFileURL) {
+/**
+ * Downloads an assignment's file from cloud back-up.
+ * @param {String} cloudFileID ID of the file to be downloaded from cloud back-up.
+ */
+function downloadAssignment(cloudFileID) {
 
     // TODO: Download assignment file from cloud.
-    alert(cloudFileURL);
+    alert(cloudFileID);
 }
 
 /**
