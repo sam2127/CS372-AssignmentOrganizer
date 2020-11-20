@@ -104,6 +104,13 @@ const createWindow = () => {
                     click() {
                         mainWindow.loadFile(path.join(__dirname, "help.html"));
                     }
+                },
+                {
+                    label: 'About',
+                    click() {
+                        // Load about.html in the newly created window.
+                        mainWindow.loadFile(path.join(__dirname, "about.html"));
+                    }
                 }
             ]
         }
