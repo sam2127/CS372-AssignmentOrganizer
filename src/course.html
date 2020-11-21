@@ -14,8 +14,10 @@
 
 <body>
     <div class="container center">
-        <h3>Courses</h3>
-        <h5>Add/Edit courses.</h5>
+        <div class="row">
+            <h4>Courses</h4>
+            <h6>Add/Edit courses.</h6>
+        </div>
         <nav class="teal">
             <div class="nav-wrapper left">
                 <div class="col s12">
@@ -33,31 +35,36 @@
                             <h6>Add Course</h6>
                         </legend>
                         <div class="input-field section">
-                            <input required tabindex="1" type="text" id="semesterSelection" class="autocomplete validate"
-                                placeholder="Type to search and select">
+                            <input required tabindex="1" type="text" id="semesterSelection"
+                                class="autocomplete validate" placeholder="Type to search and select">
                             <label for="semesterSelection">Semester</label>
                             <span class="helper-text left-align">
-                                Search semesters by a term or a year. When available, you must select a semester from the search results.
+                                Search semesters by a term or a year. When available, you must select a semester from
+                                the search results.
                             </span>
                         </div>
                         <div class="input-field section">
-                            <input required tabindex="2" placeholder="e.g. MATH-103" id="courseCode" type="text" class="validate"
-                                data-length="10" maxlength="10" pattern="^[a-zA-Z]{2,2}[a-zA-Z-_\\\d\\\s]{0,8}$">
+                            <input required tabindex="2" placeholder="e.g. MATH-103" id="courseCode" type="text"
+                                class="validate" data-length="10" maxlength="10"
+                                pattern="^[a-zA-Z]{2,2}[a-zA-Z-_\\\d\\\s]{0,8}$">
                             <label for="courseCode">Course Code</label>
                             <span class="helper-text left-align"
                                 data-error="Course code must start with 2 alphabets and can only contain digits, letters, spaces, underscores and dashes."
                                 data-success="Looks good!">
-                                Course code must start with 2 alphabets and can only contain digits, letters, spaces, underscores and dashes.
+                                Course code must start with 2 alphabets and can only contain digits, letters, spaces,
+                                underscores and dashes.
                             </span>
                         </div>
                         <div class="input-field section">
-                            <input required tabindex="3" placeholder="e.g. Applied Calculus I" id="courseName" type="text"
-                                class="validate" data-length="40" maxlength="40" pattern="^[a-zA-Z][a-zA-Z-_'+=#.&$:,;?&quot\\\/()*!@%^\\\d\\\s]{0,39}$">
+                            <input required tabindex="3" placeholder="e.g. Applied Calculus I" id="courseName"
+                                type="text" class="validate" data-length="40" maxlength="40"
+                                pattern="^[a-zA-Z][a-zA-Z-_'+=#.&$:,;?&quot\\\/()*!@%^\\\d\\\s]{0,39}$">
                             <label for="courseName">Course Name</label>
                             <span class="helper-text left-align"
                                 data-error="Course name must start with an alphabet. It must not contain any of these { } [ ] | \ ` ~ characters."
                                 data-success="Looks good!">
-                                Course name must start with an alphabet. It must not contain any of these { } [ ] | \ ` ~ characters.
+                                Course name must start with an alphabet. It must not contain any of these { } [ ] | \ `
+                                ~ characters.
                             </span>
                         </div>
                         <button tabindex="4" class="waves-effect waves-light btn" id="addCourseButton">
@@ -74,31 +81,36 @@
                         </legend>
                         <div class="input-field section">
                             <input type="hidden" id="editCourseId" value="">
-                            <input required tabindex="1" type="text" id="editSemesterSelection" class="autocomplete validate"
-                                placeholder="Type to search and select">
+                            <input required tabindex="1" type="text" id="editSemesterSelection"
+                                class="autocomplete validate" placeholder="Type to search and select">
                             <label for="editSemesterSelection">Semester</label>
                             <span class="helper-text left-align">
-                                Search semesters by a term or a year. When available, you must select a semester from the search results.
+                                Search semesters by a term or a year. When available, you must select a semester from
+                                the search results.
                             </span>
                         </div>
                         <div class="input-field section">
                             <input required tabindex="2" placeholder="e.g. MATH-100" id="editCourseCode" type="text"
-                                class="validate" data-length="10" maxlength="10" pattern="^[a-zA-Z]{2,2}[a-zA-Z-_\\\d\\\s]{0,8}$">
+                                class="validate" data-length="10" maxlength="10"
+                                pattern="^[a-zA-Z]{2,2}[a-zA-Z-_\\\d\\\s]{0,8}$">
                             <label for="editCourseCode">Course Code</label>
                             <span class="helper-text left-align"
                                 data-error="Course code must start with 2 alphabets and can only contain digits, letters, spaces, underscores and dashes."
                                 data-success="Looks good!">
-                                Course code must start with 2 alphabets and can only contain digits, letters, spaces, underscores and dashes.
+                                Course code must start with 2 alphabets and can only contain digits, letters, spaces,
+                                underscores and dashes.
                             </span>
                         </div>
                         <div class="input-field section">
-                            <input required tabindex="3" placeholder="e.g. Intro to Calculus" id="editCourseName" type="text"
-                                class="validate" data-length="40" maxlength="40" pattern="^[a-zA-Z][a-zA-Z-_'+=#.&$:,;?&quot\\\/()*!@%^\\\d\\\s]{0,39}$">
+                            <input required tabindex="3" placeholder="e.g. Intro to Calculus" id="editCourseName"
+                                type="text" class="validate" data-length="40" maxlength="40"
+                                pattern="^[a-zA-Z][a-zA-Z-_'+=#.&$:,;?&quot\\\/()*!@%^\\\d\\\s]{0,39}$">
                             <label for="editCourseName">Course Name</label>
                             <span class="helper-text left-align"
                                 data-error="Course name must start with an alphabet. It must not contain any of these { } [ ] | \ ` ~ characters."
                                 data-success="Looks good!">
-                                Course name must start with an alphabet. It must not contain any of these { } [ ] | \ ` ~ characters.
+                                Course name must start with an alphabet. It must not contain any of these { } [ ] | \ `
+                                ~ characters.
                             </span>
                         </div>
                         <button tabindex="4" class="waves-effect waves-light btn" id="updateCourseButton">
