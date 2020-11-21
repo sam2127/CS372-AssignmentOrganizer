@@ -14,8 +14,10 @@
 
 <body>
     <div class="container center">
-        <h4>Assignments</h4>
-        <h6>Add/Edit Assignments.</h6>
+        <div class="row">
+            <h4>Assignments</h4>
+            <h6>Add/Edit Assignments.</h6>
+        </div>
         <nav class="teal">
             <div class="nav-wrapper left">
                 <div class="col xl6">
@@ -35,6 +37,10 @@
                             <input tabindex="1" type="text" id="courseSelection" class="autocomplete"
                                 placeholder="Type to search">
                             <label for="courseSelection">Course</label>
+                            <span class="helper-text left-align">
+                                Search courses by their name, code, semester or the year of
+                                study. When available, you must select a course from the search results.
+                            </span>
                         </div>
                         <div class="input-field section">
                             <input tabindex="2" placeholder="e.g. Group Project Report or My Awesome Presentation"
@@ -49,9 +55,10 @@
                                 </span>
                             </div>
                             <div class="file-path-wrapper">
-                                <input readonly class="file-path" id="fileNameText" type="text" placeholder="Select a file">
+                                <input readonly class="file-path" id="fileNameText" type="text"
+                                    placeholder="Select a file">
                                 <span class="helper-text left-align">
-                                	You can upload any file as a compressed archive.
+                                    You can upload any file as a compressed archive.
                                 </span>
                             </div>
                         </div>
@@ -65,10 +72,10 @@
                                 </label>
                             </div>
                         </div>
-                        <a tabindex="5" class="waves-effect waves-light btn" id="uploadFileButton">
+                        <button tabindex="5" class="waves-effect waves-light btn" id="uploadFileButton">
                             <i class='material-icons left'>backup</i>
                             Back-up
-                        </a>
+                        </button>
                     </fieldset>
                 </div>
             </div>

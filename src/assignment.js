@@ -232,135 +232,140 @@ function uploadFile() {
     let cloudBackup, cloudFileURL;
     let existingAssignments, newAssignment, previousMaxId;
     let options, currentWindow;
+    let validationSucceeded = false;
 
-    if (sourceFile === "") {
-        return dialog.showErrorBox("Error!", "No file selected for upload.");
-    }
-    else {
+    selectedCourse = courseSelection.value;
 
-        // TODO: Validate course selection and assignment name.
-        selectedCourse = courseSelection.value;
-        selectedCourseCode = selectedCourse.substring(0, selectedCourse.indexOf("==>") - 1);
-        course = findCourse(selectedCourseCode);
+    // Validate course selection and assignment name.
+    validationSucceeded = validateUserInput(selectedCourse, assignmentName.value);
 
-        // Define the directory path where the assignment will be uploaded.
-        assignmentDir = path.join(
-            assignmentRootFolder,
-            course.year,
-            course.season,
-            course.courseCode
-        );
+    // No further processing if validation fails.
+    if (!validationSucceeded)
+        return;
+
+    // Extract the course code from selected course text.
+    selectedCourseCode = selectedCourse.substring(0, selectedCourse.indexOf("==>") - 1);
+
+    // Find the existing course details based on course code.
+    course = findCourse(selectedCourseCode);
+
+    // Define the directory path where the assignment will be uploaded.
+    assignmentDir = path.join(
+        assignmentRootFolder,
+        course.year,
+        course.season,
+        course.courseCode
+    );
+
+    try {
+        // Create directory before uploading file.
+        fs.mkdirSync(assignmentDir, { recursive: true });
+
+        // Prepend an unused number to file name so it is always a unique file name.
+        destinationFileName = (fs.readdirSync(assignmentDir).length + 1) + "-" + path.basename(sourceFile);
+
+        // Set assignment file's path.
+        destinationPath = path.join(assignmentDir, destinationFileName);
 
         try {
-            // Create directory before uploading file.
-            fs.mkdirSync(assignmentDir, { recursive: true });
+            // Upload/Copy file.
+            fs.copyFileSync(sourceFile, destinationPath);
 
-            // Prepend an unused number to file name so it is always a unique file name.
-            destinationFileName = (fs.readdirSync(assignmentDir).length + 1) + "-" + path.basename(sourceFile);
+            // By default, set cloud back-up option as 'No'.
+            cloudBackup = "No";
+            cloudFileURL = "NA";
 
-            // Set assignment file's path.
-            destinationPath = path.join(assignmentDir, destinationFileName);
+            // Set cloud back-up option based on user selection.
+            if (uploadToCloud.checked) {
+                cloudBackup = "Yes";
+
+                // TODO : Upload to cloud.
+                cloudFileURL = "To be implemented"
+            } else {
+                cloudBackup = "No";
+            }
 
             try {
-                // Upload/Copy file.
-                fs.copyFileSync(sourceFile, destinationPath);
+                // Read all existing assignments into memory.
+                existingAssignments = JSON.parse(fs.readFileSync(assignmentsDataFile));
 
-                // By default, set cloud back-up option as 'No'.
-                cloudBackup = "No";
-                cloudFileURL = "NA";
+                // Find the ID of the previous assignment.
+                previousMaxId = 0;
 
-                // Set cloud back-up option based on user selection.
-                if (uploadToCloud.checked) {
-                    cloudBackup = "Yes";
+                if (existingAssignments.length > 0) {
+                    // When the existing assignments array is not empty, find max ID.
+                    previousAssignment = existingAssignments.reduce(function (current, next) {
+                        return (current.id > next.id) ? current : next;
+                    });
 
-                    // TODO : Upload to cloud.
-                    cloudFileURL = "To be implemented"
-                } else {
-                    cloudBackup = "No";
+                    previousMaxId = previousAssignment.id;
                 }
+
+                newAssignment = {
+                    id: previousMaxId + 1,
+                    courseId: course.id,
+                    semesterId: course.semesterId,
+                    name: assignmentName.value,
+                    file: destinationPath,
+                    courseName: course.courseName,
+                    courseCode: course.courseCode,
+                    year: course.year,
+                    season: course.season,
+                    month: course.month,
+                    cloudBackup: cloudBackup,
+                    cloudFileURL: cloudFileURL
+                };
+
+                // Add new assignment to existing assignments.
+                existingAssignments.push(newAssignment);
+
+                // Sort based on year, most recent first.
+                existingAssignments.sort(function (current, next) {
+                    return next.year - current.year;
+                });
+
+                // Once sorted by year, sort based on month per year.
+                existingAssignments.sort(function (current, next) {
+                    if (current.year === next.year) {
+                        return parseInt(current.month) - parseInt(next.month);
+                    } else {
+                        return current;
+                    }
+                });
 
                 try {
-                    // Read all existing assignments into memory.
-                    existingAssignments = JSON.parse(fs.readFileSync(assignmentsDataFile));
+                    fs.writeFileSync(assignmentsDataFile, JSON.stringify(existingAssignments, null, 4));
 
-                    // Find the ID of the previous assignment.
-                    previousMaxId = 0;
+                    // Clear add assignment form.
+                    courseSelection.value = "";
+                    assignmentName.value = "";
+                    fileNameText.value = "";
+                    uploadToCloud.checked = false;
 
-                    if (existingAssignments.length > 0) {
-                        // When the existing assignments array is not empty, find max ID.
-                        previousAssignment = existingAssignments.reduce(function (current, next) {
-                            return (current.id > next.id) ? current : next;
-                        });
+                    // Also, clear the sourcefile value.
+                    sourceFile = "";
 
-                        previousMaxId = previousAssignment.id;
-                    }
-
-                    newAssignment = {
-                        id: previousMaxId + 1,
-                        courseId: course.id,
-                        semesterId: course.semesterId,
-                        name: assignmentName.value,
-                        file: destinationPath,
-                        courseName: course.courseName,
-                        courseCode: course.courseCode,
-                        year: course.year,
-                        season: course.season,
-                        month: course.month,
-                        cloudBackup: cloudBackup,
-                        cloudFileURL: cloudFileURL
+                    options = {
+                        type: 'info',
+                        buttons: ['Ok'],
+                        message: "Success!",
+                        detail: "Assignment uploaded successfully."
                     };
 
-                    // Add new assignment to existing assignments.
-                    existingAssignments.push(newAssignment);
+                    currentWindow = remote.getCurrentWindow();
+                    dialog.showMessageBoxSync(currentWindow, options);
 
-                    // Sort based on year, most recent first.
-                    existingAssignments.sort(function (current, next) {
-                        return next.year - current.year;
-                    });
-
-                    // Once sorted by year, sort based on month per year.
-                    existingAssignments.sort(function (current, next) {
-                        if (current.year === next.year) {
-                            return parseInt(current.month) - parseInt(next.month);
-                        } else {
-                            return current;
-                        }
-                    });
-
-                    try {
-                        fs.writeFileSync(assignmentsDataFile, JSON.stringify(existingAssignments, null, 4));
-
-                        // Clear add assignment form.
-                        courseSelection.value = "";
-                        assignmentName.value = "";
-                        fileNameText.value = "";
-                        uploadToCloud.checked = false;
-
-                        // Also, clear the sourcefile value.
-                        sourceFile = "";
-
-                        options = {
-                            type: 'info',
-                            buttons: ['Ok'],
-                            message: "Success!",
-                            detail: "Assignment uploaded successfully."
-                        };
-
-                        currentWindow = remote.getCurrentWindow();
-                        dialog.showMessageBoxSync(currentWindow, options);
-
-                    } catch (error) {
-                        dialog.showErrorBox("Error", "Could not write assignment data.");
-                    }
                 } catch (error) {
-                    dialog.showErrorBox("Error", "Could not read assignment data.");
+                    dialog.showErrorBox("Error", "Could not write assignment data.");
                 }
             } catch (error) {
-                dialog.showErrorBox("Error", "File upload failed: " + path.basename(sourceFile));
+                dialog.showErrorBox("Error", "Could not read assignment data.");
             }
         } catch (error) {
-            dialog.showErrorBox("Error", "Error creating directory for the upload.");
+            dialog.showErrorBox("Error", "File upload failed: " + path.basename(sourceFile));
         }
+    } catch (error) {
+        dialog.showErrorBox("Error", "Error creating directory for the upload.");
     }
 
     // Reload the updated assignment list.
@@ -515,7 +520,7 @@ function deleteAssignment(assignmentId) {
  * Also, informs the user why he can't upload to cloud.
  */
 function shouldAllowCloudUploadOrNot() {
-    
+
     let uploadToCloudSelected = uploadToCloud.checked;
 
     if (uploadToCloudSelected) {
@@ -597,6 +602,50 @@ function removeEmptyAssignmentDir(directory) {
     } catch (error) {
         dialog.showErrorBox("Error!", "Error while deleting empty assignment directory " + directory);
     }
+}
+
+/**
+ * Validates the user entered values for course and assignment name.
+ * Show appropriate error message when validation fails.
+ * @param {String} courseText Text visible to user for a selected course.
+ * @param {String} assignmentName Name of the assignment as entered by the user.
+ * @returns {boolean} result of validation in form of either true or false.
+ */
+function validateUserInput(courseText, assignmentName) {
+
+    let error = false;
+    let errorMessage = "You must do the following:\n";
+
+    // Check for invalid or empty course selection.
+    if (courseText.indexOf("==>") === -1 || courseText.trim() === "" || courseText.trim() === "==>") {
+
+        error = true;
+        errorMessage += "- Select a valid course from search results.\n";
+    }
+
+    // Check for empty assignment name.
+    if (assignmentName.trim() === "" || assignmentName.trim() == null) {
+
+        error = true;
+        errorMessage += "- Enter a name for the assignment.\n";
+    }
+
+    // Check if a file is selected for upload or not.
+    // Check the value of global variable named sourcefile.
+    if (sourceFile === "") {
+
+        error = true;
+        errorMessage += "- Select a file to back-up.\n";
+    }
+
+    // If any error exists, show error message and fail the validation.
+    if (error) {
+        dialog.showErrorBox("Error!", errorMessage);
+        return false;
+    }
+
+    // All good, pass the validation.
+    return true;
 }
 
 // Add event listeners to elements on the page.
