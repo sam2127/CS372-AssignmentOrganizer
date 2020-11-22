@@ -1,8 +1,1 @@
-{
-    "configRootFolder": "D:\\University\\2020 3Fall\\CS 372\\CS372_Repo\\AssignmentOrganizer\\src\\.config",
-    "defaultAssignmentRootFolder": "D:\\University\\2020 3Fall\\CS 372\\CS372_Repo\\AssignmentOrganizer\\assignments",
-    "assignmentRootFolder": "D:\\University\\2020 3Fall\\CS 372\\CS372_Repo\\AssignmentOrganizer\\assignments",
-    "semestersDataFile": "semesters.json",
-    "coursesDataFile": "courses.json",
-    "assignmentsDataFile": "assignments.json"
-}
+{}

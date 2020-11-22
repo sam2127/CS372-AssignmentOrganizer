@@ -1,11 +1,1 @@
-[
-    {
-        "id": 1,
-        "semesterId": 1,
-        "season": "Winter",
-        "year": "2001",
-        "month": 1,
-        "courseCode": "CS210",
-        "courseName": "IN"
-    }
-]
+[]
