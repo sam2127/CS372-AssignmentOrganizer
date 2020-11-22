@@ -16,67 +16,123 @@
 
 <body>
     <div class="container">
+
         <div class="row">
-            <div id="semester" class="col s12">
-                <div class="col left">
-                    <ul class="sidenav sidenav-fixed left-align">
-                        <li class="no-padding">
-                            <ul class="collapsible collapsible-accordion">
-                                <li class="active">
-                                    <div class="collapsible-header">Home</div>
-                                    <div class="collapsible-body">
-                                        <ul>
-                                            <li><a href="#">Introduction</a></li>
-                                            <li><a href="#">Getting Around</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header">Semester</div>
-                                    <div class="collapsible-body">
-                                        <ul>
-                                            <li><a href="./help/semester_help.html#addsemester">Add Semester</a></li>
-                                            <li><a href="./help/semester_help.html#viewSemester">View Semester</a></li>
-                                            <li><a href="./help/semester_help.html#editSemester">Edit Semester</a></li>
-                                            <li><a href="./help/semester_help.html#deleteSemester">Delete Semester</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header">Course</div>
-                                    <div class="collapsible-body">
-                                        <ul>
-                                            <li><a href="./help/course_help.html#addCourse">Add Course</a></li>
-                                            <li><a href="./help/course_help.html#viewCourse">View Course</a></li>
-                                            <li><a href="./help/course_help.html#editCourse">Edit Course</a></li>
-                                            <li><a href="./help/course_help.html#deleteCourse">Delete Course</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header">Assignment</div>
-                                    <div class="collapsible-body">
-                                        <ul>
-                                            <li><a href="./help/assignment_help.html#addAssignment">Add Assignment</a></li>
-                                            <li><a href="./help/assignment_help.html#viewAssignment">View Assigment</a></li>
-                                            <li><a href="./help/assignment_help.html#openAssignment">Open Assignment</a></li>
-                                            <li><a href="./help/assignment_help.html#deleteAssignment">Delete Assignment</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header">Settings</div>
-                                    <div class="collapsible-body">
-                                        <ul>
-                                            <li><a href="./help/settings_help.html#changeBackUpLocation">Change Local Back-Up Directory</a></li>
-                                            <li><a href="./help/settings_help.html#resetBackUpLocation">Reset Local Back-Up Directory</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                </div>
+
+            <div class="col s2">
+                <ul class="sidenav sidenav-fixed left-align">
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="active">
+                                <div class="collapsible-header">Home</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="#introduction">Introduction</a></li>
+                                        <li><a href="#gettingAround">Getting Around</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header">Semester</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="./help/semester_help.html#addsemester">Add Semester</a></li>
+                                        <li><a href="./help/semester_help.html#viewSemester">View Semester</a></li>
+                                        <li><a href="./help/semester_help.html#editSemester">Edit Semester</a></li>
+                                        <li><a href="./help/semester_help.html#deleteSemester">Delete Semester</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header">Course</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="./help/course_help.html#addCourse">Add Course</a></li>
+                                        <li><a href="./help/course_help.html#viewCourse">View Course</a></li>
+                                        <li><a href="./help/course_help.html#editCourse">Edit Course</a></li>
+                                        <li><a href="./help/course_help.html#deleteCourse">Delete Course</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header">Assignment</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="./help/assignment_help.html#addAssignment">Add Assignment</a></li>
+                                        <li><a href="./help/assignment_help.html#viewAssignment">View Assigment</a></li>
+                                        <li><a href="./help/assignment_help.html#openAssignment">Open Assignment</a></li>
+                                        <li><a href="./help/assignment_help.html#deleteAssignment">Delete Assignment</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header">Settings</div>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="./help/settings_help.html#changeBackUpLocation">Change Local Back-Up Directory</a></li>
+                                        <li><a href="./help/settings_help.html#resetBackUpLocation">Reset Local Back-Up Directory</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
+
+            <div id="settings" class="col s10">
+
+                <div class="row" id="introduction">
+                    <h5>Introduction</h5>
+                    <div id="home" class="col 9">
+                        <p>
+                            Students experience a barrage of assignments, projects, reports, etc. over the lifetime of their course. They may acquire a substantial digital load by the end of their first year and need help to sort it out. This is where our app, Assignment Organizer
+                            serves its purpose. It is a multi-platform app designed to help users systematically organize their assignments by year/term and course.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="gettingAround" class="row">
+                    <h5>Getting Around</h5>
+                    <div class="col s9">
+                        <p>
+                            (1) On the main page of the application, you will find 4 button that leads to the 4 main pages. There are some basic instructions to follow already on the home page to get you started.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="./assets/images/home/home-icons.png" class="responsive-img" alt=""></div>
+                    <div class="col s9">
+                        <p>
+                            (2) The Back-Up Settings button takes you to the settings page. Here you can choose where the app will store your files by default.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="./assets/images/home/settings-button.png" class="responsive-img" alt=""></div>
+                    <div class="col s9">
+                        <p>
+                            (3) The menu at the top allows you to get to a from pages with ease.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="./assets/images/home/top-menu.png" class="responsive-img" alt=""></div>
+                    <div class="col s9">
+                        <p>
+                            (4) The go menu button provides quick links to the five main pages in the application.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="./assets/images/home/go-menu.png" class="responsive-img" alt=""></div>
+                    <div class="col s9">
+                        <p>
+                            (5) The help menu button provides the options help, which is the manual/guide for the application, and about which gives contains the credits and other auxiliary information.
+                        </p>
+                    </div>
+                    <div class="col s9 offset-s1"><img src="./assets/images/home/help-menu.png" class="responsive-img" alt=""></div>
+
+                </div>
+
+
+
+            </div>
+
         </div>
+
+
     </div>
     <script src="assets/js/materialize.min.js"></script>
     <script src="./help.js"></script>
