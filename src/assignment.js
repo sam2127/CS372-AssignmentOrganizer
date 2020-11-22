@@ -191,8 +191,13 @@ function listExistingAssignments() {
         M.Tooltip.init(actionButtons, {});
 
         // Refresh assignments list by initializing accordion element.
-        let collapsible = document.querySelectorAll(".collapsible");
-        M.Collapsible.init(collapsible, {});
+        let collapsible = document.querySelector(".collapsible");
+        let instance = M.Collapsible.init(collapsible, {});
+
+        // Open the first panel of the collapsible.
+        // This shows the most recent year's assignments.
+        if (instance)
+            instance.open(0);
 
     } catch (error) {
         if (error.code === 'ENOENT')

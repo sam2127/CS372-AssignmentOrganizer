@@ -208,8 +208,14 @@ function listExistingCourses() {
         M.Tooltip.init(editButtons, {});
 
         // Refresh courses list.
-        let collapsible = document.querySelectorAll(".collapsible");
-        M.Collapsible.init(collapsible, {});
+        let collapsible = document.querySelector(".collapsible");
+        let instance = M.Collapsible.init(collapsible, {});
+
+        // Open the first panel of the collapsible.
+        // This shows the most recent year's courses.
+        if (instance)
+            instance.open(0);
+
     } catch (error) {
         if (error.code === "ENOENT")
             dialog.showErrorBox("File not found.", "Existing courses could not be read.");
