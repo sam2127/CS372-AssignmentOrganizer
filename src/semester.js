@@ -166,8 +166,14 @@ function listExistingSemesters() {
         M.Tooltip.init(editButtons, {});
 
         // Initialize updated semester list.
-        let collapsible = document.querySelectorAll(".collapsible");
-        M.Collapsible.init(collapsible, {});
+        let collapsible = document.querySelector(".collapsible");
+        let instance = M.Collapsible.init(collapsible, {});
+
+        // Open the first panel of the collapsible.
+        // This shows the most recent year's semesters.
+        if (instance)
+            instance.open(0);
+
     } catch (error) {
         if (error.code === "ENOENT")
             dialog.showErrorBox("File not found.", "Semesters could not be populated.");
