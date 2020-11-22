@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "id": 1,
+        "year": "2001",
+        "season": "Winter",
+        "month": 1
+    }
+]
