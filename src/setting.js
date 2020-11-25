@@ -185,23 +185,20 @@ function moveAssignments(currentRootPath, newRootPath) {
                 // Delete the assignment file from old back-up directory.
                 fs.unlinkSync(assignment.file);
 
+                // Remove the current assignment directory, if it's empty.
+                removeEmptyAssignmentDir(path.dirname(assignment.file));
+
                 // Update file path for the assignment.
                 assignment.file = newFilePath;
 
             } catch (error) {
-                console.log("Error!", "Error while moving file: " + assignment.file);
+                // Show a non-blocking error message.
+                M.toast({ html: "Error while moving file: " + assignment.file });
             }
         });
 
         try {
-            // Delete old assignment directory structure.
-            fs.rmdirSync(currentRootPath, { recursive: true });
-        } catch (error) {
-            // dialog.showErrorBox("Error!", "Error deleting old assignment directory structure.");
-            dialog.showErrorBox("Error!", error.message);
-        }
-
-        try {
+            
             // Save updated assignment file paths to assignment data file.
             fs.writeFileSync(assignmentsDataFile, JSON.stringify(existingAssignments, null, 4));
 
@@ -223,6 +220,37 @@ function moveAssignments(currentRootPath, newRootPath) {
         }
     } catch (error) {
         dialog.showErrorBox("Error!", "Error while moving assignments to new back-up directory.");
+    }
+}
+
+/**
+ * Remove empty assignment directory in reverse order, recursively.
+ * @param {String} directory Path to directory to be deleted
+ */
+function removeEmptyAssignmentDir(directory) {
+
+    let parentDir;
+
+    // Do not delete assignmentRootFolder, even if it's empty.
+    if (directory === assignmentRootFolder) {
+        return;
+    }
+
+    try {
+        // Check if the directory is empty or not.
+        if (fs.readdirSync(directory).length === 0) {
+
+            // Store parent directory path.
+            parentDir = path.dirname(directory);
+
+            // Remove the empty directory.
+            fs.rmdirSync(directory);
+
+            // Remove parent directory if it's empty.
+            removeEmptyAssignmentDir(parentDir);
+        }
+    } catch (error) {
+        dialog.showErrorBox("Error!", "Error while deleting empty assignment directory " + directory);
     }
 }
 
