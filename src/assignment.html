@@ -27,56 +27,69 @@
             </div>
         </nav>
         <div class="row">
-            <div class="col xl6 offset-xl3">
+            <div class="col xl8 offset-xl2">
                 <div class="section center">
                     <fieldset>
                         <legend>
                             <h6>Add Assignment</h6>
                         </legend>
-                        <div class="input-field section">
-                            <input tabindex="1" type="text" id="courseSelection" class="autocomplete"
-                                placeholder="Type to search">
-                            <label for="courseSelection">Course</label>
-                            <span class="helper-text left-align">
-                                Search courses by their name, code, semester or the year of
-                                study. When available, you must select a course from the search results.
-                            </span>
-                        </div>
-                        <div class="input-field section">
-                            <input tabindex="2" placeholder="e.g. Group Project Report or My Awesome Presentation"
-                                id="assignmentName" type="text" class="validate" data-length="25">
-                            <label for="assignmentName">Assignment Name</label>
-                        </div>
-                        <div class="file-field input-field">
-                            <div tabindex="3" class="btn" id="selectFileButton">
-                                <span>
-                                    <i class='material-icons left'>file_upload</i>
-                                    File
-                                </span>
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input readonly class="file-path" id="fileNameText" type="text"
-                                    placeholder="Select a file">
+                        <div class="row">
+                            <div class="input-field section col xl12">
+                                <input tabindex="1" type="text" id="courseSelection" class="autocomplete"
+                                    placeholder="Type to search">
+                                <label for="courseSelection">Course</label>
                                 <span class="helper-text left-align">
-                                    File formats: .txt, .doc, .docx, .pdf, .xls, .xlsx, .ppt, .pptx, .zip, .rar, .7z.
-                                    <br>You can upload any file as a compressed archive.
+                                    Search courses by their name, code, semester or the year of
+                                    study. When available, you must select a course from the search results.
                                 </span>
                             </div>
                         </div>
-                        <div class="input-field section">
-                            <div class="switch">
-                                <label for="uploadToCloud">Upload To Cloud?&nbsp;&nbsp;</label>
-                                <label>
-                                    <input tabindex="4" type="checkbox" id="uploadToCloud">
-                                    <span class="lever"></span>
-                                    Yes
-                                </label>
+                        <div class="row">
+                            <div class="input-field section col xl12">
+                                <input tabindex="2" placeholder="e.g. Group Project Report or My Awesome Presentation"
+                                    id="assignmentName" type="text" class="validate" data-length="25">
+                                <label for="assignmentName">Assignment Name</label>
                             </div>
                         </div>
-                        <button tabindex="5" class="waves-effect waves-light btn" id="uploadFileButton">
-                            <i class='material-icons left'>backup</i>
-                            Back-up
-                        </button>
+                        <div class="row">
+                            <div class="file-field input-field col xl12">
+                                <div tabindex="3" class="btn" id="selectFileButton">
+                                    <span>
+                                        <i class='material-icons left'>file_upload</i>
+                                        File
+                                    </span>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input readonly class="file-path" id="fileNameText" type="text"
+                                        placeholder="Select a file">
+                                    <span class="helper-text left-align">
+                                        Allowed file formats are .txt, .doc, .docx, .pdf, .xls, .xlsx, .ppt, .pptx,
+                                        .zip,
+                                        .rar and .7z.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field section col xl12">
+                                <div class="switch">
+                                    <label for="uploadToCloud">Upload To Cloud? (Optional)&nbsp;&nbsp;</label>
+                                    <label>
+                                        <input tabindex="4" type="checkbox" id="uploadToCloud">
+                                        <span class="lever"></span>
+                                        Yes
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col xl12">
+                                <button tabindex="5" class="waves-effect waves-light btn" id="uploadFileButton">
+                                    <i class='material-icons left'>backup</i>
+                                    Back-up
+                                </button>
+                            </div>
+                        </div>
                     </fieldset>
                 </div>
             </div>
