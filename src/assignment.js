@@ -382,18 +382,27 @@ function uploadFile() {
  * @param {String} assignmentId ID of the assignment to be opened.
  */
 function openAssignment(assignmentId) {
+
+    let existingAssignments, assignmentToBeOpened, index;
+
     try {
         // Read existing assignments.
-        let existingAssignments = JSON.parse(fs.readFileSync(assignmentsDataFile, "utf-8"));
+        existingAssignments = JSON.parse(fs.readFileSync(assignmentsDataFile, "utf-8"));
 
         // Get the index of the assignment having assignment Id to open.
-        let index = existingAssignments.findIndex(function (assignment) {
+        index = existingAssignments.findIndex(function (assignment) {
             return assignment.id === assignmentId;
         });
 
-        let assignmentToBeOpened = existingAssignments[index];
+        // Get the assignment details based on the index.
+        assignmentToBeOpened = existingAssignments[index];
 
-        shell.openExternal(path.join("file://", assignmentToBeOpened.file));
+        // Open the assignment file, if it exists.
+        if (fs.existsSync(assignmentToBeOpened.file))
+            shell.openExternal(path.join("file://", assignmentToBeOpened.file));
+        else
+            dialog.showErrorBox("File not found", assignmentToBeOpened.file + " - file does not exist.");
+    
     } catch (error) {
         dialog.showErrorBox("Error", error.message);
     }
