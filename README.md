@@ -16,8 +16,6 @@ This is an [electron](https://www.electronjs.org/) based app that I created as p
 - [x] Set custom folder for back-up
 - [ ] Back-up on cloud i.e. Google Drive
 
-Download latest release from [here](https://github.com/sam2127/AssignmentOrganizer.git).
-
 ### Prerequisites
 
 - Install `node.js` from [here](https://nodejs.org/en/).
