@@ -36,20 +36,29 @@
                             Local Back-up
                         </div>
                         <div class="collapsible-body">
-                            <div class="input-field section">
-                                <input class="file-path" id="assignmentRootFolder" type="text" value="current directory"
-                                    readonly>
-                                <label for="assignmentRootFolder" class="teal-text">Local Back-up Directory</label>
-                                <span class="helper-text left">Change local back-up directory or Reset to default directory</span>
+                            <div class="row">
+                                <div class="input-field section col xl12">
+                                    <input class="file-path" id="assignmentRootFolder" type="text"
+                                        value="current directory" readonly>
+                                    <label for="assignmentRootFolder" class="teal-text">Local Back-up Directory</label>
+                                    <span class="helper-text left">Change local back-up directory or Reset to default
+                                        directory</span>
+                                </div>
                             </div>
-                            <a tabindex="1" class="waves-effect waves-light btn" id="changeRootFolderButton">
-                                <i class="material-icons left">folder_special</i>
-                                Change
-                            </a>
-                            <a tabindex="2" class="waves-effect waves-light btn" id="setDefaultRootFolderButton">
-                                <i class="material-icons left">sync</i>
-                                Reset
-                            </a>
+                            <div class="row">
+                                <div class="col xl12">
+                                    <button tabindex="1" class="waves-effect waves-light btn"
+                                        id="changeRootFolderButton">
+                                        <i class="material-icons left">folder_special</i>
+                                        Change
+                                    </button>
+                                    <button tabindex="2" class="waves-effect waves-light btn"
+                                        id="setDefaultRootFolderButton">
+                                        <i class="material-icons left">sync</i>
+                                        Reset
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </li>
                 </ul>
