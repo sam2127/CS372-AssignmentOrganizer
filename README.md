@@ -127,7 +127,3 @@ git pull
 
 
 - [Git cheat sheet](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet)
-
-### Meeting Notes
-
-- Find the weekly meeting notes [here.](https://docs.google.com/document/d/1pSZHw92Xs80werUMw0P02uf8FQvluOu5u8xnPjn8gcQ/edit?usp=sharing)
