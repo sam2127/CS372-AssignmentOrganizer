@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
@@ -161,7 +161,10 @@ function initializeSettings() {
 
     // Reading the data from settings.json synchronously using readFileSync() from fs module and parsing it as a JSON object into settings.
     let settings = JSON.parse(fs.readFileSync(settingsFile, 'utf-8'));
-    
+
+    // We will read assignments in this variable.
+    let assignments;
+
     // If the path for configRootFolder doesn't exist in settings.json, then we write it.
     if (!settings.configRootFolder) {
         settings.configRootFolder = path.join(__dirname, './.config');
@@ -175,6 +178,27 @@ function initializeSettings() {
     // If the path of root folder for assignments doesn't exist in settings.json, then we write a default path.
     if (!settings.assignmentRootFolder) {
         settings.assignmentRootFolder = path.join(__dirname, '../assignments');
+    } else {
+        // If the root folder name exists, then check if there are any assignments in it or not.
+        let assignmentFile = path.join(settings.configRootFolder, "assignments.json");
+
+        // Read assignment data to check for number of assignments.
+        assignments = JSON.parse(fs.readFileSync(assignmentFile, "utf-8"));
+
+        // If the user has uploaded some assignments, then check for assignment root folder.
+        if (assignments.length > 0) {
+
+            // If root assignment folder does not exist, show error and quit the app.
+            if (!fs.existsSync(settings.assignmentRootFolder)) {
+
+                let errorHeading = "Fatal error: back-up directory not found";
+                let errorMessage = "\"" + settings.assignmentRootFolder + "\" does not exist.\n\nIf it is on a removable drive, make sure you connect the removable drive before starting the app.\n\nApp will quit now.";
+
+                dialog.showErrorBox(errorHeading, errorMessage);
+
+                app.quit();
+            }
+        }
     }
 
     // If the name of semesters data file doesn't exist in settings.json, then we write the file name.
