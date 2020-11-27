@@ -235,7 +235,7 @@ function uploadFile() {
 
     let selectedCourse, selectedCourseCode, course, assignmentDir, destinationPath, destinationFileName;
     let cloudBackup, cloudFileURL;
-    let existingAssignments, newAssignment, previousMaxId;
+    let existingAssignments, newAssignment, previousMaxId = 0;
     let options, currentWindow;
     let validationSucceeded = false;
 
@@ -294,23 +294,28 @@ function uploadFile() {
                 // Read all existing assignments into memory.
                 existingAssignments = JSON.parse(fs.readFileSync(assignmentsDataFile));
 
-                // Find the ID of the previous assignment.
-                previousMaxId = 0;
-
+                // When the existing assignments array is not empty, find the max ID.
                 if (existingAssignments.length > 0) {
-                    // When the existing assignments array is not empty, find max ID.
-                    previousAssignment = existingAssignments.reduce(function (current, next) {
-                        return (current.id > next.id) ? current : next;
-                    });
+                    
+                    // Check all the assignments and previousMaxId should be assigned the greatest assignment id value from all the assignment IDs.
+                    for (let assignment of existingAssignments) {
+                        
+                        if (assignment.id > previousMaxId)
+                            previousMaxId = assignment.id;
+                        
+                    }
 
-                    previousMaxId = previousAssignment.id;
+                } else {
+
+                    // This will be the first assignment so previousMaxId will be 0.
+                    previousMaxId = 0;
                 }
 
                 newAssignment = {
                     id: previousMaxId + 1,
                     courseId: course.id,
                     semesterId: course.semesterId,
-                    name: assignmentName.value,
+                    name: assignmentName.value.trim(),
                     file: destinationPath,
                     courseName: course.courseName,
                     courseCode: course.courseCode,
