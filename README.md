@@ -49,7 +49,7 @@ npm run make
 
 <br>
 
-![](src\assets\images\readme\installer-directory.png)
+![](src/assets/images/readme/installer-directory.png)
 
 <br>
 
