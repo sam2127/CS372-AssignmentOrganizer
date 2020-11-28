@@ -47,6 +47,12 @@ npm run make
 
 - Using `npm run make` command will create an `out` folder in the cloned directory. The `out` folder will have a `make` directory which will contain the installer for your platform. For Linux and macOS, `make` folder will include a `zip` file with the app's executable. You can either use the `zip` file to launch the app or install the app using the installer. 
 
-**Windows installer in a no-nonsense installer which does not require any user input once it is launched. The installer silently installs the app and when installed, it launches the app automatically.**
+<br>
 
-**Linux installer is only supported on debian (Ubuntu) based systems. For all other linux systems, `npm run make` command will fail. However, it will still generate the `zip` file with the app's executable.**
+![](src\assets\images\readme\installer-directory.png)
+
+<br>
+
+- **Windows installer is a no-nonsense installer which does not require any user input once it is launched. The installer silently installs the app and when installed, it launches the app automatically.**
+
+- **Linux installer is only supported on debian (Ubuntu) based systems. For all other linux systems, `npm run make` command will fail. However, it will still generate the `zip` file with the app's executable.**
