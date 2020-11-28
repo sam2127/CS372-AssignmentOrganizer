@@ -42,11 +42,9 @@ Everyone must study the code in `master` branch in order to gain a better unders
 
 | Task                      | Owner             |
 |---------------------------|-------------------|
-| Help Document (HTML only) | Shawn, Raju       |
 | Google Drive Integration  | Shubham, Harpinder|
 | Bug fixing                | All               |
 | README update             | Shubham           |
-| Code comments             | All               |
 <br>
 
 ## Testing
@@ -81,7 +79,6 @@ Tasks in this section are **tentative** and **may or may not be completed** depe
 
 | Task                                                                  | Owner   |
 |-----------------------------------------------------------------------|---------|
-| Creating scripts to generate installers for Windows/MacOS/Linux       | Shubham |
 | Release versioning                                                    | Shubham |
 | Testing install and uninstall using the installers on all 3 platforms | All     |
 | Publishing installers for download                                    | Shubham |  
@@ -93,19 +90,19 @@ Tasks in this section are **tentative** and **may or may not be completed** depe
 If we commit to the tasks in coding and testing sections, then half of those tasks will help produce the report. In other words, we will have contents ready for report which will need only some rephrasing, formatting and proof reading.  
 <br>
 
-| Task                                     | Owner                  |
-|------------------------------------------|------------------------|
-| Prepare contents as per grading criteria | Shawn, Raju, Harpinder |
-| Use cases                                | Shawn, Raju, Harpinder |
-| Any diagrams                             | Shawn, Raju, Harpinder |
-| Screenshots                              | Shawn, Raju, Harpinder |
-| Formatting                               | Shawn, Raju, Harpinder |
-| Proof reading + corrections              | All                    |  
+| Task                                     | Owner                           |
+|------------------------------------------|---------------------------------|
+| Prepare contents as per grading criteria | Shubham, Shawn, Raju, Harpinder |
+| Use cases                                | Shubham, Shawn, Raju, Harpinder |
+| Any diagrams                             | Shubham, Shawn, Raju, Harpinder |
+| Screenshots                              | Shubham, Shawn, Raju, Harpinder |
+| Formatting                               | Shubham, Shawn, Raju, Harpinder |
+| Proof reading + corrections              | All                             |  
 <br>
 
 ## R&D
 <br>
 
-| Task                      | Owner     |
-|---------------------------|-----------|
+| Task                      | Owner              |
+|---------------------------|--------------------|
 | Google Drive Integration  | Shubham, Harpinder |
