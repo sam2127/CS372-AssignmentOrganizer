@@ -1,57 +1,66 @@
 {
-  "name": "sample-electron-app",
-  "productName": "sample-electron-app",
-  "version": "1.0.0",
-  "description": "My Electron application description",
+  "name": "assignment-organizer",
+  "productName": "Assignment Organizer",
+  "version": "0.0.1",
+  "description": "Organize your assignments.",
   "main": "src/index.js",
-  "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\"",
-    "clean": "node clean-data.js"
-  },
-  "keywords": [],
-  "author": "Shubham",
-  "license": "MIT",
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "sample_electron_app"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
+  "author": "Shubham Mehta",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "@electron-forge/cli": "6.0.0-beta.54",
+    "@electron-forge/maker-deb": "6.0.0-beta.54",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.54",
+    "@electron-forge/maker-zip": "6.0.0-beta.54",
+    "electron": "11.0.2"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
     "electron-squirrel-startup": "^1.0.0"
   },
-  "devDependencies": {
-    "@electron-forge/cli": "6.0.0-beta.54",
-    "@electron-forge/maker-deb": "6.0.0-beta.54",
-    "@electron-forge/maker-rpm": "6.0.0-beta.54",
-    "@electron-forge/maker-squirrel": "6.0.0-beta.54",
-    "@electron-forge/maker-zip": "6.0.0-beta.54",
-    "electron": "^11.0.2"
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "clean": "node clean-data.js"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "executableName": "assignment-organizer",
+        "icon": "src/assets/icons/App"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "assignment-organizer",
+            "exe": "assignment-organizer.exe",
+            "icon": "src/assets/icons/App.ico",
+            "setupIcon": "src/assets/icons/App.ico"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin",
+            "linux"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "options": {
+              "maintainer": "Shubham Mehta",
+              "homepage": "https://github.com/sam2127/CS372-AssignmentOrganizer"
+            }
+          }
+        },
+        {
+          "name": "@electron-forge/maker-dmg"
+        }
+      ]
+    }
   }
 }
