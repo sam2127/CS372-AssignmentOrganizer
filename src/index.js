@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, dialog } = require('electron');
+const { app, BrowserWindow, Menu, dialog, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
@@ -12,6 +12,8 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 const createWindow = () => {
     // Create the browser window.
     mainWindow = new BrowserWindow({
+        icon: path.join(__dirname, 'assets/icons/App.png'),
+        title: app.getName(),
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true
@@ -129,6 +131,13 @@ const createWindow = () => {
 
     // Write initial settings, if they don't exist.
     initializeSettings();
+
+    // New window event is fired when a new window is opened from the main window of the app.
+    // We intercept the event,  prevent the default behaviour and open the link in external browser.
+    mainWindow.webContents.on('new-window', function (e, url) {
+        e.preventDefault();
+        shell.openExternal(url);
+    });
 };
 
 // This method will be called when Electron has finished
@@ -157,7 +166,6 @@ function initializeSettings() {
 
     // Joining the specified path segments into one path and storing that path in the settingsFile constant.
     const settingsFile = path.join(__dirname, '.config/settings.json');
-    
 
     // Reading the data from settings.json synchronously using readFileSync() from fs module and parsing it as a JSON object into settings.
     let settings = JSON.parse(fs.readFileSync(settingsFile, 'utf-8'));
