@@ -6,5 +6,11 @@ src/.config/courses.json
 src/.config/semesters.json
 src/.config/settings.json
 
+# Runtime data
+src/.DS_Store
+
+# Electron-Forge
+out/
+
 # Assignment files.
 assignments/
