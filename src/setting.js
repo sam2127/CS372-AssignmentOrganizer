@@ -73,7 +73,7 @@ function resetAssignmentDirectory() {
         buttons: ["No", "Yes"],
         defaultId: 0,
         message: "Are you sure you want to move existing assignments?",
-        detail: "This will move your existing assignments to default back-up directory and delete it from current back-up directory. This can not be reversed later. Also, this operation can take time."
+        detail: "This will move your existing assignments to default back-up directory from the current back-up directory. \nThis operation can take time depending on the size of the assignment files."
     };
 
     // Get the current window. 
@@ -113,7 +113,7 @@ async function selectFolder() {
         buttons: ["No", "Yes"],
         defaultId: 0,
         message: "Are you sure you want to move existing assignments?",
-        detail: "This will move your existing assignments to new back-up directory and delete it from current back-up directory. This can not be reversed later. Also, this operation can take time."
+        detail: "This will move your existing assignments to new back-up directory from the current back-up directory. \nThis operation can take time depending on the size of the assignment files."
     };
 
     // Get the current window. 
