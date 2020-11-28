@@ -26,10 +26,8 @@ const createWindow = () => {
             label: "File",
             submenu: [
                 {
-                    label: "Exit",
-                    click() {
-                        app.quit();
-                    }
+                    role: 'quit',
+                    accelerator: "CmdOrCtrl+Q"
                 }
             ]
         },
@@ -37,6 +35,7 @@ const createWindow = () => {
             label: "Go",
             submenu: [
                 {
+                    accelerator: "Alt+H",
                     label: "Home",
                     click() {
                         mainWindow.loadFile(path.join(__dirname, 'home.html'));
@@ -46,24 +45,31 @@ const createWindow = () => {
                     type: "separator"
                 },
                 {
+                    accelerator: "Alt+S",
                     label: "Semester",
                     click() {
                         mainWindow.loadFile(path.join(__dirname, 'semester.html'));
                     }
                 },
                 {
+                    accelerator: "Alt+C",
                     label: "Course",
                     click() {
                         mainWindow.loadFile(path.join(__dirname, 'course.html'));
                     }
                 },
                 {
+                    accelerator: "Alt+A",
                     label: "Assignment",
                     click() {
                         mainWindow.loadFile(path.join(__dirname, 'assignment.html'));
                     }
                 },
                 {
+                    type: "separator"
+                },
+                {
+                    accelerator: "CmdOrCtrl+,",
                     label: "Settings",
                     click() {
                         mainWindow.loadFile(path.join(__dirname, 'setting.html'));
@@ -72,37 +78,10 @@ const createWindow = () => {
             ]
         },
         {
-            label: "View",
+            label: 'Help',
             submenu: [
                 {
-                    label: "Reload",
-                    accelerator: "CmdOrCtrl+R",
-                    click(item, focusedWindow) {
-                        if (focusedWindow)
-                            focusedWindow.reload();
-                    }
-                },
-                {
-                    label: "Toggle Developer Tools",
-                    accelerator: process.platform === "darwin" ? "Alt+Command+I" : "Ctrl+Shift+I",
-                    click(item, focusedWindow) {
-                        if (focusedWindow)
-                            focusedWindow.webContents.toggleDevTools();
-                    }
-                },
-                {
-                    type: "separator"
-                },
-                {
-                    role: "togglefullscreen"
-                }
-            ]
-        },
-        {
-            role: 'help',
-            submenu: [
-                {
-                    label: 'Help',
+                    label: 'Documentation',
                     click() {
                         mainWindow.loadFile(path.join(__dirname, "help.html"));
                     }
