@@ -178,7 +178,7 @@ function initializeSettings() {
 
                 dialog.showErrorBox(errorHeading, errorMessage);
 
-                app.exit(0);
+                app.exit(1);
             }
         }
     }
