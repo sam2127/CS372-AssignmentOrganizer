@@ -21,20 +21,16 @@ const createWindow = () => {
     });
 
     // Create our custom menu for the app.
-    let template = [
-        {
+    let template = [{
             label: "File",
-            submenu: [
-                {
-                    role: 'quit',
-                    accelerator: "CmdOrCtrl+Q"
-                }
-            ]
+            submenu: [{
+                role: 'quit',
+                accelerator: "CmdOrCtrl+Q"
+            }]
         },
         {
             label: "Go",
-            submenu: [
-                {
+            submenu: [{
                     accelerator: "Alt+H",
                     label: "Home",
                     click() {
@@ -79,8 +75,7 @@ const createWindow = () => {
         },
         {
             label: 'Help',
-            submenu: [
-                {
+            submenu: [{
                     label: 'Documentation',
                     click() {
                         mainWindow.loadFile(path.join(__dirname, "help.html"));
@@ -113,7 +108,7 @@ const createWindow = () => {
 
     // New window event is fired when a new window is opened from the main window of the app.
     // We intercept the event,  prevent the default behaviour and open the link in external browser.
-    mainWindow.webContents.on('new-window', function (e, url) {
+    mainWindow.webContents.on('new-window', function(e, url) {
         e.preventDefault();
         shell.openExternal(url);
     });
@@ -183,7 +178,7 @@ function initializeSettings() {
 
                 dialog.showErrorBox(errorHeading, errorMessage);
 
-                app.quit();
+                app.exit(1);
             }
         }
     }
