@@ -1,6 +1,6 @@
-# About
+# README
 
-This is an [electron](https://www.electronjs.org/) based app that I created as part of learning Electron. It allows a student to back-up his/her school assignments in a central place.
+Assignment Organizer is an [electron-based](https://www.electronjs.org/) app that we created as part of a university project. It allows a student to back-up the school assignments in a central place.
 
 ## Features
 
