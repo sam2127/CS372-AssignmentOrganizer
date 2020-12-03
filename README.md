@@ -29,7 +29,7 @@ Assignment Organizer is an [electron-based](https://www.electronjs.org/) app tha
 - Install node dependencies.
 
 ```sh
-cd AssignmentOrganizer
+cd CS372-AssignmentOrganizer
 npm install
 ```
 
