@@ -2,7 +2,7 @@ const { app, BrowserWindow, Menu, dialog, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
-let mainWindow;
+let mainWindow, fatalError = false;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -22,74 +22,74 @@ const createWindow = () => {
 
     // Create our custom menu for the app.
     let template = [{
-            label: "File",
-            submenu: [{
-                role: 'quit',
-                accelerator: "CmdOrCtrl+Q"
-            }]
+        label: "File",
+        submenu: [{
+            role: 'quit',
+            accelerator: "CmdOrCtrl+Q"
+        }]
+    },
+    {
+        label: "Go",
+        submenu: [{
+            accelerator: "Alt+H",
+            label: "Home",
+            click() {
+                mainWindow.loadFile(path.join(__dirname, 'home.html'));
+            }
         },
         {
-            label: "Go",
-            submenu: [{
-                    accelerator: "Alt+H",
-                    label: "Home",
-                    click() {
-                        mainWindow.loadFile(path.join(__dirname, 'home.html'));
-                    }
-                },
-                {
-                    type: "separator"
-                },
-                {
-                    accelerator: "Alt+S",
-                    label: "Semester",
-                    click() {
-                        mainWindow.loadFile(path.join(__dirname, 'semester.html'));
-                    }
-                },
-                {
-                    accelerator: "Alt+C",
-                    label: "Course",
-                    click() {
-                        mainWindow.loadFile(path.join(__dirname, 'course.html'));
-                    }
-                },
-                {
-                    accelerator: "Alt+A",
-                    label: "Assignment",
-                    click() {
-                        mainWindow.loadFile(path.join(__dirname, 'assignment.html'));
-                    }
-                },
-                {
-                    type: "separator"
-                },
-                {
-                    accelerator: "CmdOrCtrl+,",
-                    label: "Settings",
-                    click() {
-                        mainWindow.loadFile(path.join(__dirname, 'setting.html'));
-                    }
-                }
-            ]
+            type: "separator"
         },
         {
-            label: 'Help',
-            submenu: [{
-                    label: 'Documentation',
-                    click() {
-                        mainWindow.loadFile(path.join(__dirname, "help.html"));
-                    }
-                },
-                {
-                    label: 'About',
-                    click() {
-                        // Load about.html in the newly created window.
-                        mainWindow.loadFile(path.join(__dirname, "about.html"));
-                    }
-                }
-            ]
+            accelerator: "Alt+S",
+            label: "Semester",
+            click() {
+                mainWindow.loadFile(path.join(__dirname, 'semester.html'));
+            }
+        },
+        {
+            accelerator: "Alt+C",
+            label: "Course",
+            click() {
+                mainWindow.loadFile(path.join(__dirname, 'course.html'));
+            }
+        },
+        {
+            accelerator: "Alt+A",
+            label: "Assignment",
+            click() {
+                mainWindow.loadFile(path.join(__dirname, 'assignment.html'));
+            }
+        },
+        {
+            type: "separator"
+        },
+        {
+            accelerator: "CmdOrCtrl+,",
+            label: "Settings",
+            click() {
+                mainWindow.loadFile(path.join(__dirname, 'setting.html'));
+            }
         }
+        ]
+    },
+    {
+        label: 'Help',
+        submenu: [{
+            label: 'Documentation',
+            click() {
+                mainWindow.loadFile(path.join(__dirname, "help.html"));
+            }
+        },
+        {
+            label: 'About',
+            click() {
+                // Load about.html in the newly created window.
+                mainWindow.loadFile(path.join(__dirname, "about.html"));
+            }
+        }
+        ]
+    }
     ];
 
     let menu = Menu.buildFromTemplate(template);
@@ -108,10 +108,12 @@ const createWindow = () => {
 
     // New window event is fired when a new window is opened from the main window of the app.
     // We intercept the event,  prevent the default behaviour and open the link in external browser.
-    mainWindow.webContents.on('new-window', function(e, url) {
-        e.preventDefault();
-        shell.openExternal(url);
-    });
+    if (!fatalError) {
+        mainWindow.webContents.on('new-window', function (e, url) {
+            e.preventDefault();
+            shell.openExternal(url);
+        });
+    }
 };
 
 // This method will be called when Electron has finished
@@ -178,7 +180,8 @@ function initializeSettings() {
 
                 dialog.showErrorBox(errorHeading, errorMessage);
 
-                app.exit(1);
+                fatalError = true;
+                app.quit();
             }
         }
     }
